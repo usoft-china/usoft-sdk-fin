@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "open/OpenFinancingSideEntity.proto";
+//import "open/OpenCapitalSideEntity.proto";
+import "BaseRestEntity.proto";
+package fin.open;
+option java_multiple_files = true;
+option java_package = "com.usoft.fin.external.open.factoring.api.protobuf";
+option java_outer_classname = "IOpenFinancingSideServiceProto";
+
+service IOpenFinancingSideService {
+    // 查看发布的需求-restAPI /api/open/factoring/fsDemands, method:get, type:kv
+    rpc getFinanceSideDemands (GetFinanceSideDemandsReq) returns (GetFinanceSideDemandsResp);
+    // 查看融资记录详情-restAPI /api/open/factoring/demandDetail, method:get, type:kv
+    rpc getFinanceDemandDetail (GetFinanceDemandDetailReq) returns (GetFinanceDemandDetailResp);
+    // 同意洽谈-restAPI /api/open/factoring/agreeDiscuss, methos:post, type:kv
+    rpc agreeDiscuss (AgreeDiscussReq) returns (AgreeDiscussResp);
+}
+
+//查看发布的需求 请求信息
+message GetFinanceSideDemandsReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 pageSize = 3; // 每页大小
+    int32 pageNumber = 4;
+    int32 enuu = 5; //融资方企业uu
+}
+//查看发布的需求 响应信息
+message GetFinanceSideDemandsResp {
+    RespHeader respHeader = 1; // 响应头信息
+    repeated FinanceDemandAndFinanceSide financeDemandAndFinanceSide = 2;
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+
+// 查看融资记录详情 请求信息
+message GetFinanceDemandDetailReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    string code = 3; // 融资编号
+    int32 enuu = 8; // 融资方企业uu
+}
+// 查看融资记录详情 响应信息
+message GetFinanceDemandDetailResp {
+    RespHeader respHeader = 1; // 响应头信息
+    FinanceDemandAndAcceptOffer financeDemandAndAcceptOffer = 2;  //融资记录详情(含报价列表，融资需求相关信息)
+}
+
+// 同意洽谈 请求信息
+message AgreeDiscussReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    string offerCode = 3; // 报价编号
+    int32 enuu = 4; // 融资方企业uu
+    int32 uu = 5; // 融资方个人uu
+}
+// 同意洽谈 响应信息
+message AgreeDiscussResp {
+    RespHeader respHeader = 1; // 响应头信息
+}

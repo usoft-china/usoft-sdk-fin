@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+import "BaseRestEntity.proto";
+package fin.open;
+option java_multiple_files = true;
+option java_package = "com.usoft.fin.external.open.api.entity";
+
+message FinanceOfferDetails {
+    AcceptOffer acceptOfferInfo = 1; //报价信息
+    repeated OfferDetailAndFinanceAccept offerDetailAndFinanceAcceptInfo = 2; //（报价详情表）与（融资需求详情与B2B订单表）与（融资需求详情与B2B验收明细单表）
+    AcceptFinanceDemand financeDemandInfo = 3; //融资需求信息
+}
+
+//（融资需求详情与B2B验收明细单）与（融资需求详情与B2B订单表）
+message FinanceDemandDetailAcceptAndDetail{
+    AcceptFinanceDemandDetailAccept financeDemandDetailAccept = 1;
+    AcceptFinanceDemandDetail financeDemandDetail = 2;
+    AcceptOffer acceptOffer = 3;
+    AcceptOfferDetail acceptOfferDetail = 4;
+}
+
+
+//报价记录列表信息
+message FinanceOfferList {
+    AcceptOffer acceptOfferInfo = 1; //报价信息
+    AcceptFinanceDemand financeDemandInfo = 2; //融资需求信息
+}
+
+//申请报价额度实体
+message OfferQuotaInfoRest{
+    int32 csEnuu=1;         //资金方enuu
+    string csEnName = 2;      //资金方企业名称
+    int32 fsEnuu=3;         //融资方enuu
+    string fsEnName = 4;      //资金方企业名称
+    double quotaAmount = 5;     //当前额度
+    int32 credDays=6;           //授信期限(月)
+    double financeRate=7;       //融资比例
+    double offerRate=8;         //年化利率
+    string repayment=9;         //还款方式
+    string applyTime=10;       //申请时间
+    int32 applyUu =11;         //申请人uu
+    string applyUsername=12;    //申请人姓名
+    string checkerTime=13;     //审核时间
+    int32 checkerUu=14;       //审核人uu
+    string checkerUsername=15;      //审核人姓名
+    int32 status=16;                //审核状态
+    string checkerContent = 17;            //审核原因
+    int32 id = 18;           //id
+    string code = 19;            //code
+}
+
+//报价表
+message AcceptOffer{
+    string code = 1;                        //编号
+    string financeCode = 2;                 //融资编号
+    double offerAmount = 3;                 //报价金额
+    double financeRate = 4;                 //融资利率
+    int32 financeDays = 5;                  //融资期限(天)
+    string capitalSideName= 6;              //资金方公司名称
+    string csContactsMan= 7;                //资金方联系人姓名
+    string csContactsPhone= 8;              //资金方联系电话
+    int32 csEnuu = 9;                       //资金方enuu
+    int32 csUseruu = 10;                    //资金方useruu
+    string csUserName= 11;                  //资金方操作人名
+    string financeSideName= 12;             //融资方公司名称
+    string fsContactsMan= 13;               //融资方联系人姓名
+    string fsContactsPhone= 14;             //融资方联系电话
+    string offerTime= 15;                   //报价时间
+    int32 status = 16;                      //状态 1001-筛选中, 1002-已采纳，1003-已失效
+    string payments = 17;                   //还款方式 按月付息，到期还本/到期一次性还
+    double offerRate = 18;                  //放款年利率
+    double financingRatio = 19;             //融资比例=采纳报价/验收总额
+}
+
+//融资需求表
+message AcceptFinanceDemand {
+    string code = 1; // 融资需求编号
+    string adoptCode = 2; // 采纳编号
+    int32 financeDays = 3; // 融资期限（天）
+    int32 status = 4; // 状态 1001-生效中, 1002-交易成功，1003-已失效
+    double amount = 5; // 验收单金额
+    double dealAmount = 6; // 成交金额
+    double dealRate = 7; // 成交利率
+    string fsEnName = 8; // 融资方公司名称
+    int32 fsEnuu = 9; // 融资方enuu
+    string fsUserName = 10; // 融资方用户名
+    int32 fsUseruu = 11; // 融资方useruu
+    string fsContactsMan = 12; // 融资方联系人姓名
+    string fsContactsPhone = 13; // 融资方联系电话
+    string csEnName = 14; // 资金方公司名称
+    int32 csEnuu = 15; // 资金方enuu
+    string csUserName = 16; // 资金方用户名
+    int32 csUseruu = 17; // 资金方useruu
+    string csContactsMan = 18; // 资金方联系人姓名
+    string csContactsPhone = 19; // 资金方联系电话
+    string pubTime = 20; // 发布日期
+    string endTime = 21; // 截止日期
+    string dealTime = 22; // 成交日期
+    int32 offerCount = 23; //报价人数
+    double fsDemandAmount = 24; //融资需求金额
+}
+
+//（报价详情表）与（融资需求详情与B2B订单表）与（融资需求详情与B2B验收明细单表）
+message OfferDetailAndFinanceAccept {
+    AcceptOfferDetail acceptOfferDetail = 1; //报价详情表
+    AcceptFinanceDemandDetail financeDemandDetail = 2; //融资需求详情与B2B订单表
+    AcceptFinanceDemandDetailAccept financeDemandDetailAccept = 3;  //融资需求详情与B2B验收明细单表
+}
+
+//报价详情表
+message AcceptOfferDetail{
+    string code = 1;                    //编号
+    string acceptOfferCode = 2;         //报价编号
+    string financeDemandDetailCode = 3; //融资需求详情与B2B订单编号
+    string financeDemandDetailAcceptCode = 4; //融资需求详情与B2B验收明细单编号
+    double offerAmount = 5;             //报价金额
+}
+
+//融资需求详情与B2B订单表
+message AcceptFinanceDemandDetail {
+    string code = 1;
+    string financeDemandCode = 2;     //融资需求编号
+    int32 custEnuu= 3;                //验收客户企业uu
+    string custEnName= 4;             //验收客户企业名称
+    string custGrade= 5;              //验收客户平台评级
+    string payments= 6;               //B2B验收单付款方式
+    int32 orderId= 7;                 //B2B订单id
+    string orderCode= 8;              //B2B订单号
+    int32 orderTotal= 9;              //B2B订单总金额
+    double acceptAmount= 10;          //勾选B2B验收单明细金额合计
+}
+
+//融资需求详情与B2B验收明细单实体
+message AcceptFinanceDemandDetailAccept{
+    string code = 1;
+    string financeDemandCode = 2;       //融资需求编号
+    string financeDemandDetailCode = 3; //融资需求详情与验收单编号
+    int32 orderItemId= 4;               //B2B订单明细id
+    int32 acceptItemId= 5;            //B2B验收明细id
+    int32 acceptId= 6;                 //B2B验收id
+    double acceptAmount= 7;            //B2B验收金额
+    string acceptDate= 8;              //B2B验收日期
+    string acceptCode= 9;              //B2B验收单号
+    string acceptStatus= 10;           //B2B验收状态
+    string title= 11;                   //物料名称
+    string spec= 12;                    //物料规格
+    string productCode= 13;            //物料编号
+    int32 status= 14;                   //状态 1001-生效中, 1002-交易成功，1003-已失效
+}
+
+//（报价详情表）与(融资需求详情与B2B验收明细单)
+message AcceptOfferDetaiAndFinanceDemandDetailAccept{
+    AcceptOfferDetail acceptOfferDetail = 1;
+    AcceptFinanceDemandDetailAccept financeDemandDetailAccept = 2;
+}

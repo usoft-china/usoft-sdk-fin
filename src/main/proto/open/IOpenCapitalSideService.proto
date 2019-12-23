@@ -1,0 +1,164 @@
+syntax = "proto3";
+
+import "open/OpenCapitalSideEntity.proto";
+import "BaseRestEntity.proto";
+package fin.open;
+option java_multiple_files = true;
+option java_package = "com.usoft.fin.external.open.api.protobuf";
+option java_outer_classname = "IOpenCapitalSideServiceProto";
+
+
+service IOpenCapitalSideService {
+    // 查看融资记录列表-restAPI /api/open/demands, method:get, type:kv
+    rpc getFinanceDemands (GetFinanceDemandsReq) returns (GetFinanceDemandResp);
+    // 批量报价 -restAPI /api/open/cs/batchOfferOrder, method:post, type:kv
+    rpc batchOfferOrder (BatchOfferOrderReq) returns (BatchOfferOrderResp);
+    // 提交企业申请额度信息-restAPI /api/open/cs/saveOfferQuotaInfo, method:get, type:kv
+    rpc saveOfferQuotaInfo(SaveOfferQuotaInfoReq) returns (SaveOfferQuotaInfoResp);
+    // 企业申请额度信息审核-restAPI /api/open/cs/updateOfferQuotaInfo, method:get, type:kv
+    rpc updateOfferQuotaInfo(UpdateOfferQuotaInfoReq) returns (UpdateOfferQuotaInfoResp);
+    // 查看报价记录列表-restAPI /api/open/cs/getFinanceOfferList, method:get, type:kv
+    rpc getFinanceOfferList (GetFinanceOfferListReq) returns (GetFinanceOfferListResp);
+    // 查看报价详情-restAPI /api/open/cs/getFinanceOfferDetails, method:get, type:kv
+    rpc getFinanceOfferDetails (GetFinanceOfferDetailsReq) returns (GetFinanceOfferDetailsResp);
+    // 获取企业申请额度信息列表-restAPI /api/open/cs/getOfferQuotaInfoList, method:get, type:kv
+    rpc getOfferQuotaInfoList (GetOfferQuotaInfoListReq) returns (GetOfferQuotaInfoListResp);
+    // 获取企业申请额度信息详情-restAPI /api/open/cs/getOfferQuotaInfoByCode, method:get, type:kv
+    rpc getOfferQuotaInfoByCode(GetOfferQuotaInfoByCodeReq) returns (GetOfferQuotaInfoByCodeResp);
+
+}
+
+// 查看融资记录列表 请求
+message GetFinanceDemandsReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 pageSize = 3; // 每页大小
+    int32 pageNumber = 4; // 页码
+    int32 status = 5; // 状态 生效中-1001 交易成功-1002
+    int32 enuu = 6; // enuu
+    string startAcceptDate = 7; // 开始时间（选填）
+    string endAcceptDate = 8; // 结束时间（选填）
+    int32 isoffer = 9;      // 报价筛选（选填） 1101（已报价）1102（未报价）
+    string orderBy = 10;     //需要排序的字段（选填）【acceptAmount和 cust_grade 】
+    string sort = 11;        //升序还是降序（选填）【desc 和 asc】
+    int32 csEnuu = 12; //资金方企业enuu
+}
+// 查看融资记录列表 响应
+message GetFinanceDemandResp {
+    RespHeader respHeader = 1;
+    repeated FinanceDemandDetailAcceptAndDetail FinanceDemandDetailAcceptAndDetail = 2;
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+
+// 查看报价详情 请求
+message GetFinanceOfferDetailsReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    string offerCode = 3; // 报价编号
+}
+// 查看报价详情 响应
+message GetFinanceOfferDetailsResp {
+    RespHeader respHeader = 1;
+    FinanceOfferDetails financeOfferInfo = 2;
+}
+
+//批量报价 请求参数
+message BatchOfferOrderReq{
+    string signature = 1;      //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2;       //秘密身份ID
+    repeated string financeDemandDetailAcceptCode = 3; //融资需求详情与B2B验收明细单表code
+    double offerAmount = 4;    // 报价金额
+    double financeRate = 5;    // 融资利率
+    int32 financeDays = 6;     // 融资期限(天)
+    string contactsMan = 7;    // 资金方联系人
+    string contactsPhone = 8;  // 资金方联系方式
+    string payments = 9;       //还款方式 按月付息，到期还本/到期一次性还
+    double offerRate = 10;     //放款年利率
+    int32 enuu = 11;           //资金方企业enuu
+    int32 uu = 12;             //资金方个人uu
+}
+//批量报价 响应参数
+message BatchOfferOrderResp{
+    RespHeader respHeader = 1;
+}
+
+//提交企业申请额度信息
+message SaveOfferQuotaInfoReq{
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 csEnuu = 3;         //资金方enuu
+    string csEnName = 4;      //资金方企业名称
+    int32 fsEnuu = 5;         //融资方enuu
+    string fsEnName = 6;      //资金方企业名称
+    double quotaAmount = 7;     //当前额度
+    int32 credDays = 8;           //授信期限(月)
+    double financeRate = 9;       //融资比例
+    double offerRate = 10;         //年化利率
+    string repayment = 11;         //还款方式
+    int32 applyUu = 12;         //申请人uu
+}
+//提交企业申请额度信息
+message SaveOfferQuotaInfoResp{
+    RespHeader respHeader = 1;
+}
+
+//企业申请额度信息审核    请求参数
+message UpdateOfferQuotaInfoReq{
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 csEnuu = 3;    //资金方enuu
+    int32 fsEnuu = 4;    //融资方enuu
+    int32 status = 5;           //1401：待审核 1402：审核成功，1403：审核失败
+    string endTime = 6;         //计算后的额度到期日期
+    string checkerContent = 7;            //审核原因
+    int32 checkUu = 8;         //审核人uu
+}
+//企业申请额度信息审核    响应参数
+message UpdateOfferQuotaInfoResp{
+    RespHeader respHeader = 1;
+}
+
+// 查看报价记录列表
+message GetFinanceOfferListReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 pageSize = 3; // 每页大小
+    int32 pageNumber = 4; // 页码
+    int32 enuu = 5; //资金方enuu
+}
+// 查看报价记录列表
+message GetFinanceOfferListResp {
+    RespHeader respHeader = 1; // 响应头信息
+    repeated FinanceOfferList financeOfferInfo = 2;
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+
+//获取企业申请额度信息列表 请求信息
+message GetOfferQuotaInfoListReq{
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 csEnuu = 3;   //资金方enuu
+    int32 pageSize = 4; // 每页大小
+    int32 pageNumber = 5; // 页码
+    int32 fsEnuu = 6;   //融资方enuu
+    int32 status = 7;   //申请额度状态
+}
+//获取企业申请额度信息列表 响应信息
+message GetOfferQuotaInfoListResp{
+    RespHeader respHeader = 1; // 响应头信息
+    repeated OfferQuotaInfoRest offerQuoteInfo = 2;          //报价额度实体
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+
+//根据code获取企业申请额度信息 请求参数
+message GetOfferQuotaInfoByCodeReq{
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    string code = 3;            //code
+}
+
+//根据code获取企业申请额度信息  响应参数
+message GetOfferQuotaInfoByCodeResp{
+    RespHeader respHeader = 1; // 响应头信息 // 响应头信息
+    OfferQuotaInfoRest offerQuoteInfo = 2;          //报价额度实体
+}

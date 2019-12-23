@@ -1,0 +1,192 @@
+syntax = "proto3";
+
+import "BaseRestEntity.proto";
+import "open/OpenCapitalSideEntity.proto";
+package fin.open;
+option java_multiple_files = true;
+option java_package = "com.usoft.fin.external.open.factoring.api.entity";
+
+//融资需求实体
+message FinanceDemandRestInfo {
+    string code = 1; // 融资需求编号
+    string adoptCode = 2; // 采纳编号
+    int32 financeDays = 3; // 融资期限（天）
+    int32 status = 4; // 状态 1001-生效中, 1002-交易成功，1003-已失效
+    double amount = 5; // 验收单金额
+    double dealAmount = 6; // 成交金额
+    double dealRate = 7; // 成交利率
+    string fsEnName = 8; // 融资方公司名称
+    int32 fsEnuu = 9; // 融资方enuu
+    string fsUserName = 10; // 融资方用户名
+    int32 fsUseruu = 11; // 融资方useruu
+    string fsContactsMan = 12; // 融资方联系人姓名
+    string fsContactsPhone = 13; // 融资方联系电话
+    string csEnName = 14; // 资金方公司名称
+    int32 csEnuu = 15; // 资金方enuu
+    string csUserName = 16; // 资金方用户名
+    int32 csUseruu = 17; // 资金方useruu
+    string csContactsMan = 18; // 资金方联系人姓名
+    string csContactsPhone = 19; // 资金方联系电话
+    string pubTime = 20; // 发布日期
+    string endTime = 21; // 截止日期
+    int32 offerCount = 22; // 报价人数
+    string dealTime = 23; // 成交日期
+    double fsDemandAmount = 24; // 融资需求金额
+}
+
+message FactoringOrderInfo {
+    string code = 1; //订单编号
+    int32 amount = 2; //订单金额
+    string customerName  = 3; //客户名称
+    string orderDate = 4; //订单日期
+    repeated FactoringOrderDetailInfo orderDetailInfo = 5;// 订单明细
+}
+
+// 订单明细信息
+message FactoringOrderDetailInfo {
+    string code = 1; //物料编号
+    string name = 2; //产品名称
+    string specifications = 3; //规格
+    string cmpCode = 4; //型号
+    repeated FactoringAccptInfo accptInfo = 5; //验收单信息
+}
+
+// 提款关联的验收单信息
+message FactoringAccptInfo {
+    string code = 1; //验收单号
+    string acceptDate = 2; //验收日期
+    double amount = 3; //验收金额
+    string status = 4; //验收状态
+    int32 id = 5; // 验收单id
+}
+
+message AcceptOrderInfo {
+    string code = 1; // 编号
+    int32 acceptId = 2; // 验收单id
+    string acceptCode = 3; //验收单号
+    string acceptDate = 4; //验收日期
+    double acceptAmount = 5; //验收金额
+    string acceptStatus = 6; //验收状态
+    int64 orderItemId = 7; // 订单明细id
+    string productCode = 8; //物料编号
+    string productTitle = 9; //产品名称
+    string productSpec = 10; //规格
+    string productCmpcode = 11; //型号
+    int64 orderId = 12; // 订单id
+    string orderCode = 13; //订单编号
+    string custName  = 14; //客户名称
+    int32 orderTotal = 15; //订单金额
+    string orderDate = 16; //订单日期
+    int32 enuu = 17; // 企业uu
+    string custGrade  = 18; //客户企业-平台评级
+    string payments  = 19; //b2b获取的付款方式
+    int32 acceptIdPrimary  = 20; //验收单主表ID
+    int32 cust_enuu  = 21; //客户企业uu
+}
+
+//（融资需求）与（融资方）
+message FinanceDemandAndFinanceSide{
+    FinanceDemandRestInfo financeDemand = 1;   //融资需求
+    FinanceSideRestInfo financeSide = 2 ;      //融资方
+}
+
+message FinanceSideRestInfo {
+    string code = 1; // 融资方编号
+    string businessCode = 2; // 营业执照号(等同于统一社会信用代码,企业税号)
+    string enName = 3; // 企业名
+    int32 enuu = 4; // 企业uu号
+    string enBusinessMain = 5; // 主营业务
+    string enAreaProvince = 6; // 企业办公省市区(省)
+    string enAreaCity = 7; // 企业办公省市区（区）
+    string enAddress = 8; // 企业详细地址
+    string grade = 9; // 平台评级
+    string financeDesc = 10; // 融资简介
+    double financeAmount = 11; // 融资金额
+    double minOfferRate = 12; // 最低报价利率
+    double maxOfferRate = 13; // 最高报价利率
+    string companProfile= 15;        //企业简介
+    double fsDemandAmount = 16;   //融资需求总额
+    double expectRate = 17; //期望年化利率
+}
+
+//融资记录详情(含报价列表，融资需求相关信息)
+message FinanceDemandAndAcceptOffer{
+    FinanceDemandAndDetailAndAccept financeDemandAndDetailAndAccept = 1; //融资需求与B2B订单
+    repeated AcceptOfferAndDetail acceptOfferAndDetail = 2;     //(报价表)与（报价详情表）
+}
+
+//(融资需求)与（融资需求详情与B2B订单）与（融资需求详情与B2B验收明细单）
+message FinanceDemandAndDetailAndAccept{
+    FinanceDemandRestInfo FinanceDemand = 1;
+    repeated FinanceDemandDetailAndAccept financeDemandDetailAndAccept= 24; //（融资需求详情与B2B订单表）与（融资需求详情与B2B验收明细单）
+}
+
+//（融资需求详情与B2B订单表）与（融资需求详情与B2B验收明细单）
+message FinanceDemandDetailAndAccept{
+    FinanceDemandDetail financeDemandDetail = 1;
+    repeated FinanceDemandDetailAccept financeDemandDetailAccept = 11;  //
+}
+
+//融资需求详情与B2B订单实体
+message FinanceDemandDetail{
+    string code = 1;
+    string financeDemandCode = 2;     //融资需求编号
+    int32 custEnuu= 3;                //验收客户企业uu
+    string custEnName= 4;             //验收客户企业名称
+    string custGrade= 5;              //验收客户平台评级
+    string payments= 6;               //B2B验收单付款方式
+    int32 orderId= 7;                 //B2B订单id
+    string orderCode= 8;              //B2B订单号
+    int32 orderTotal= 9;              //B2B订单总金额
+    double acceptAmount= 10;          //勾选B2B验收单明细金额合计
+}
+
+//融资需求详情与B2B验收明细单实体
+message FinanceDemandDetailAccept{
+    string code = 1;
+    string financeDemandCode = 2;       //融资需求编号
+    string financeDemandDetailCode = 3; //融资需求详情与验收单编号
+    int32 orderItemId= 4;               //B2B订单明细id
+    int32 acceptItemId= 5;            //B2B验收明细id
+    int32 acceptId= 6;                 //B2B验收id
+    double acceptAmount= 7;            //B2B验收金额
+    string acceptDate= 8;              //B2B验收日期
+    string acceptCode= 9;              //B2B验收单号
+    string acceptStatus= 10;           //B2B验收状态
+    string title= 11;                   //物料名称
+    string spec= 12;                    //物料规格
+    string productCode= 13;            //物料编号
+    int32 status= 14;                   //状态 1001-生效中, 1002-交易成功，1003-已失效
+}
+
+//(报价表)与（报价详情表）
+message AcceptOfferAndDetail{
+    AcceptOffer acceptOffer = 1;
+    repeated AcceptOfferDetaiAndFinanceDemandDetailAccept acceptOfferDetaiAndFinanceDemandDetailAccept= 2;     //报价详情表
+}
+
+/*//（报价详情表）与(融资需求详情与B2B验收明细单)
+message AcceptOfferDetaiAndFinanceDemandDetailAccept{
+    AcceptOfferDetail acceptOfferDetail = 1;
+    AcceptFinanceDemandDetailAccept financeDemandDetailAccept = 2;
+}*/
+
+/*
+
+//融资需求详情与B2B验收明细单实体
+message AcceptFinanceDemandDetailAccept{
+    string code = 1;
+    string financeDemandCode = 2;       //融资需求编号
+    string financeDemandDetailCode = 3; //融资需求详情与验收单编号
+    int32 orderItemId= 4;               //B2B订单明细id
+    int32 acceptItemId= 5;            //B2B验收明细id
+    int32 acceptId= 6;                 //B2B验收id
+    double acceptAmount= 7;            //B2B验收金额
+    string acceptDate= 8;              //B2B验收日期
+    string acceptCode= 9;              //B2B验收单号
+    string acceptStatus= 10;           //B2B验收状态
+    string title= 11;                   //物料名称
+    string spec= 12;                    //物料规格
+    string productCode= 13;            //物料编号
+    int32 status= 14;                   //状态 1001-生效中, 1002-交易成功，1003-已失效
+}*/
