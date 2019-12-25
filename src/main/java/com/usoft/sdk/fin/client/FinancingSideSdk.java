@@ -1,8 +1,7 @@
 package com.usoft.sdk.fin.client;
 
 
-import com.usoft.fin.external.open.factoring.api.protobuf.GetFinanceSideDemandsReq;
-import com.usoft.fin.external.open.factoring.api.protobuf.GetFinanceSideDemandsResp;
+import com.usoft.fin.external.open.factoring.api.protobuf.*;
 import com.usoft.sdk.fin.utils.HttpUtil;
 import com.usoft.sdk.fin.utils.ProtoBufUtil;
 
@@ -24,7 +23,7 @@ public class FinancingSideSdk extends BaseSdk {
 
 
 	/**
-	 * [查看发布的需求]
+	 * [查看融资记录列表]
 	 * @author: liuzx
 	 * @date: 2019/12/23
 	 **/
@@ -49,4 +48,32 @@ public class FinancingSideSdk extends BaseSdk {
 //		BatchUpdateOrderResp.Builder resp = ProtoBufUtil.toProtoBuf(BatchUpdateOrderResp.newBuilder(), respJson);
 //		return resp.build();
 //	}
+
+
+	/**
+	 * [查看融资记录详情]
+	 * @author: liuzx
+	 * @date: 2019/12/23
+	 **/
+	public GetFinanceDemandDetailResp getFinanceDemandDetail(GetFinanceDemandDetailReq.Builder req) throws Exception {
+		String url = baseUrl + "/api/open/factoring/demandDetail";
+		Map<String, String> params = genSignToMap(req);
+		String respJson = HttpUtil.doGet(url, params, timeout);
+		GetFinanceDemandDetailResp.Builder resp = ProtoBufUtil.toProtoBuf(GetFinanceDemandDetailResp.newBuilder(), respJson);
+		return resp.build();
+	}
+
+
+	/**
+	 * [同意洽谈-报价]
+	 * @author: liuzx
+	 * @date: 2019/12/23
+	 **/
+		public AgreeDiscussResp agreeDiscuss(AgreeDiscussReq.Builder req) throws Exception {
+		String url = baseUrl + "/api/open/factoring/agreeDiscuss";
+		String paramJson = genSignToJson(req);
+		String respJson = HttpUtil.doPost(url, paramJson, timeout);
+			AgreeDiscussResp.Builder resp = ProtoBufUtil.toProtoBuf(AgreeDiscussResp.newBuilder(), respJson);
+		return resp.build();
+	}
 }
