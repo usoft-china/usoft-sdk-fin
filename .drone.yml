@@ -33,7 +33,6 @@ steps:
     event:
     - push    
 
-
 - name: notify_email
   image: drillster/drone-email
   settings:
