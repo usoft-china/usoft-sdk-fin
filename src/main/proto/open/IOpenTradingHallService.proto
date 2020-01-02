@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+import "open/OpenTradingHallEntity.proto";
+import "open/OpenFinancingSideEntity.proto";
+import "BaseRestEntity.proto";
+package fin.open;
+option java_multiple_files = true;
+option java_package = "com.usoft.fin.external.open.api.protobuf";
+option java_outer_classname = "IOpenTradingHallServiceProto";
+
+service IOpenTradingHallService {
+    // 获取融资方列表-restAPI /api/open/factoring/financeSides, method:get, type:kv
+    rpc getFinanceSides (GetFinanceSidesReq) returns (GetFinanceSidesResp);
+    //根据验订单ID通过b2b获取订单详情 -restAPI  /api/open/factoring/getOrderByOrderId   method:get, type:kv
+    rpc getOrderByOrderId (GetOrderByOrderIdReq) returns (GetOrderByOrderIdResp);
+    //根据验收单主表ID通过b2b获取验收单详情 -restAPI /api/open/factoring/getAcceptOrderByAcceptId   method:get, type:kv
+    rpc GetAcceptOrderByAcceptId (GetAcceptOrderByAcceptIdReq) returns (GetAcceptOrderByAcceptIdResp);
+    // 通过enuu获取融资方信息-restAPI /api/open/factoring/baseInfo, method:get, type:kv
+    rpc getBaseInfo (GetBaseInfoReq) returns (GetBaseInfoResp);
+}
+
+// 获取融资方列表--请求
+message GetFinanceSidesReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 pageNumber = 3; // 页码
+    int32 pageSize = 4; // 每页条数
+    string grade = 5; // 平台评级
+    double financeAmountStart = 6; // 融资金额
+    double financeAmountEnd = 7; // 融资金额
+    double minOfferRateStart = 8; // 最低报价利率
+    double minOfferRateEnd = 9; // 最低报价利率
+    double maxOfferRateStart = 10; // 最高报价利率
+    double maxOfferRateEnd = 11; // 最高报价利率
+}
+
+// 获取融资方列表--响应
+message GetFinanceSidesResp {
+    RespHeader respHeader = 1; // 响应头信息
+    repeated FinanceSideRestInfo financeSideRestInfo = 2;
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+
+//根据验订单ID通过b2b获取订单详情--请求
+message GetOrderByOrderIdReq{
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 orderId = 3;  //订单ID
+    int32 enuu = 4;  //查看的卖方企业uu
+}
+
+//根据验订单ID通过b2b获取订单详情--响应
+message GetOrderByOrderIdResp{
+    RespHeader respHeader = 1; // 响应头信息
+    string jsonString = 2;
+}
+
+//根据验收单主表ID通过b2b获取验收单详情--请求
+message GetAcceptOrderByAcceptIdReq{
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 acceptIdPrimary = 3;  //验收单主表ID
+    int32 enuu = 4;  //查看的卖方企业uu
+}
+
+//根据验收单主表ID通过b2b获取验收单详情--响应
+message GetAcceptOrderByAcceptIdResp{
+    RespHeader respHeader = 1; // 响应头信息
+    string jsonString = 2;
+}
+
+// 通过enuu获取融资方信息--请求
+message GetBaseInfoReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 enuu = 3; //查询的企业uu
+    int32 csEnuu = 4; //企业方企业uu
+    int32 uu = 5; //个人uu
+}
+
+// 通过enuu获取融资方信息--响应
+message GetBaseInfoResp {
+    RespHeader respHeader = 1; // 响应头信息
+    RestBaseInfo baseInfo = 2;
+}

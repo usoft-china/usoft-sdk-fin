@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "BaseRestEntity.proto";
+package fin.open;
+option java_multiple_files = true;
+option java_package = "com.usoft.fin.external.open.api.entity";
+
+message RestBaseInfo {
+    string enName = 1; // 企业名称
+    string enBusinessMain = 2; // 主营业务
+    string enAreaProvince = 3; // 企业办公省市区(省)
+    string enAreaCity = 4; // 企业办公省市区（市）
+    string enAreaDistrict = 5; //企业办公省市区（区）
+    string enAddress = 6; // 企业详细地址
+    string fsContactsMan = 7; // 融资方联系人姓名
+    string fsContactsPhone = 8; // 融资方联系电话
+    string financeDesc = 9; // 融资简介
+    string grade = 10; // 评级
+    double orderAmount = 11; // 订单总额
+    string businessCode = 12; //营业执照号
+    double financeAmount = 13; //融资总金额
+    int32 isCollection =14; // 1201-该企业已加入自选
+    string companProfile= 15;        //企业简介
+    double fsDemandAmount = 16;   //融资需求总额
+    double expectRate = 17; //期望年化利率
+}
