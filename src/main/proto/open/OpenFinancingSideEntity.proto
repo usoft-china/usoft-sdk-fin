@@ -113,6 +113,7 @@ message FinanceSideRestInfo {
 message FinanceDemandAndAcceptOffer{
     FinanceDemandAndDetailAndAccept financeDemandAndDetailAndAccept = 1; //融资需求与B2B订单
     repeated AcceptOfferAndDetail acceptOfferAndDetail = 2;     //(报价表)与（报价详情表）
+    CapitalSideLoanAndRepaymentPlan capitalSideLoanAndRepaymentPlanInfo = 3; //(资金方放款信息表)与(资金方还款计划表)
 }
 
 //(融资需求)与（融资需求详情与B2B订单）与（融资需求详情与B2B验收明细单）

@@ -46,7 +46,7 @@ public class CapitalSideSdkTest {
 	@Test
 	public void getFinanceOfferDetails() throws Exception {
 		GetFinanceOfferDetailsReq.Builder req = GetFinanceOfferDetailsReq.newBuilder();
-		req.setOfferCode("71191217655139665802");
+		req.setOfferCode("71191218666434955543");
 		GetFinanceOfferDetailsResp resp = capitalSideSdk.getFinanceOfferDetails(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}

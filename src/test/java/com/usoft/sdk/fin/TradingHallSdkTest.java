@@ -36,7 +36,7 @@ public class TradingHallSdkTest {
     @Test
     public void GetAcceptOrderByAcceptId() throws Exception {
         GetAcceptOrderByAcceptIdReq.Builder req = GetAcceptOrderByAcceptIdReq.newBuilder();
-        req.setEnuu(10000666);` `
+        req.setEnuu(10000666);
         req.setAcceptIdPrimary(1856822);
         GetAcceptOrderByAcceptIdResp resp = tradingHallSdk.GetAcceptOrderByAcceptId(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
