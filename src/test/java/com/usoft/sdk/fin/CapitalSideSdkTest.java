@@ -1,5 +1,7 @@
 package com.usoft.sdk.fin;
 
+import com.usoft.fin.external.open.api.entity.OpenCapitalSideLoanOther;
+import com.usoft.fin.external.open.api.entity.OpenCapitalSideRepaymentPlanOther;
 import com.usoft.fin.external.open.api.protobuf.*;
 import com.usoft.sdk.fin.client.CapitalSideSdk;
 import com.usoft.sdk.fin.utils.ProtoBufUtil;
@@ -103,6 +105,74 @@ public class CapitalSideSdkTest {
         req.setCsEnuu(10042875).setFsEnuu(10041559).setStatus(1402).setEndTime("2029-09-09 09:13:20")
                 .setCheckerContent("有钱任性").setCheckUu(1000027739);
         UpdateOfferQuotaInfoResp resp = capitalSideSdk.updateOfferQuotaInfo(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
+
+    @Test
+    public void addCapitalSideLoan() throws Exception  {
+        AddCapitalSideLoanReq.Builder req = AddCapitalSideLoanReq.newBuilder();
+        OpenCapitalSideLoanOther.Builder capitalSideLoanOther = OpenCapitalSideLoanOther.newBuilder();
+        capitalSideLoanOther.setFinanceDemandCode("73191217657460232300");
+        capitalSideLoanOther.setLoanCode("");
+        capitalSideLoanOther.setReceivablesArrivalDate("2020-1-25");
+        capitalSideLoanOther.setFinanceRate(8);
+        capitalSideLoanOther.setLoanAmount(19891.2);
+        capitalSideLoanOther.setLoanDate("2020-1-25");
+        capitalSideLoanOther.setRepaymentData("2020-3-25");
+        capitalSideLoanOther.setLoanRate(8);
+        capitalSideLoanOther.setRepaymentFrequency("按月付息，到期还本");
+        capitalSideLoanOther.setFsCollectionBank("招商银行");
+        capitalSideLoanOther.setFsCollectionAccount("1234567890");
+        capitalSideLoanOther.setFsCollectionName("英唐优软云");
+        capitalSideLoanOther.setReceiptForLoan(19891.2);
+        capitalSideLoanOther.setInterestPayable(5000);
+        capitalSideLoanOther.setBeOverdue(0);
+        capitalSideLoanOther.setSettle(0);
+        capitalSideLoanOther.setApplyDate("2020-1-2");
+        capitalSideLoanOther.setPersonInCharge("lzx");
+        capitalSideLoanOther.setStatus(1);
+        capitalSideLoanOther.setApprovalDate("2020-1-2");
+        capitalSideLoanOther.setApprovalMan("lzx");
+        req.setCapitalSideLoan(capitalSideLoanOther);
+
+        OpenCapitalSideRepaymentPlanOther.Builder capitalSideRepaymentPlanOther = OpenCapitalSideRepaymentPlanOther.newBuilder();
+        capitalSideRepaymentPlanOther.setRepaymentData("2020-2-25");
+        capitalSideRepaymentPlanOther.setCurrency("RMB");
+        capitalSideRepaymentPlanOther.setCapitalAmount(10000);
+        capitalSideRepaymentPlanOther.setInterest(1000);
+        capitalSideRepaymentPlanOther.setAmount(101000);
+        capitalSideRepaymentPlanOther.setPersonInCharge("lzx");
+        req.addCapitalSideRepaymentPlan(capitalSideRepaymentPlanOther);
+
+        OpenCapitalSideRepaymentPlanOther.Builder capitalSideRepaymentPlanOther1 = OpenCapitalSideRepaymentPlanOther.newBuilder();
+        capitalSideRepaymentPlanOther1.setRepaymentData("2020-3-25");
+        capitalSideRepaymentPlanOther1.setCurrency("RMB");
+        capitalSideRepaymentPlanOther1.setCapitalAmount(9891.2);
+        capitalSideRepaymentPlanOther1.setInterest(4000);
+        capitalSideRepaymentPlanOther1.setAmount(13891.2);
+        capitalSideRepaymentPlanOther1.setPersonInCharge("lzx");
+        req.addCapitalSideRepaymentPlan(capitalSideRepaymentPlanOther1);
+        req.setEnuu(10042875);
+
+        AddCapitalSideLoanResp resp = capitalSideSdk.addCapitalSideLoan(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
+
+    @Test
+    public void getCapitalSideLoan() throws Exception {
+        GetCapitalSideLoanReq.Builder req = GetCapitalSideLoanReq.newBuilder();
+        req.setPageSize(10);
+        req.setPageNumber(1);
+        req.setCsEnuu(10042875);
+        GetCapitalSideLoanResp resp = capitalSideSdk.getCapitalSideLoan(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
+
+    @Test
+    public void updateRepaymentPlanStatus() throws Exception {
+        UpdateRepaymentPlanStatusReq.Builder req = UpdateRepaymentPlanStatusReq.newBuilder();
+        req.setCapitalSideRepaymentPlanCode("87200102793370509102");
+        UpdateRepaymentPlanStatusResp resp = capitalSideSdk.updateRepaymentPlanStatus(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
 }

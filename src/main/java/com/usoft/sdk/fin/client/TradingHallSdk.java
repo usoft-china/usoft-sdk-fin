@@ -71,4 +71,30 @@ public class TradingHallSdk extends BaseSdk {
         GetBaseInfoResp.Builder resp = ProtoBufUtil.toProtoBuf(GetBaseInfoResp.newBuilder(), respJson);
         return resp.build();
     }
+
+    /**
+     * [获取放款信息记录、还款计划记录公共方法]
+     * @author: linjh
+     * @date: 2020/1/7
+     **/
+    public GetCapitalSideLoanAndRepaymentPlanResp getCapitalSideLoanAndRepaymentPlan(GetCapitalSideLoanAndRepaymentPlanReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/factoring/getCapitalSideLoanAndRepaymentPlan";
+        Map<String, String> params = genSignToMap(req);
+        String respJson = HttpUtil.doGet(url, params, timeout);
+        GetCapitalSideLoanAndRepaymentPlanResp.Builder resp = ProtoBufUtil.toProtoBuf(GetCapitalSideLoanAndRepaymentPlanResp.newBuilder(), respJson);
+        return resp.build();
+    }
+
+    /**
+     * [保理大厅详情获取企业扩展信息]
+     * @author: linjh
+     * @date: 2020/1/7
+     **/
+    public GetEnterpriseExtensionInfoResp getEnterpriseExtensionInfo(GetEnterpriseExtensionInfoReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/factring/getEnterpriseExtensionInfo";
+        Map<String, String> params = genSignToMap(req);
+        String respJson = HttpUtil.doGet(url, params, timeout);
+        GetEnterpriseExtensionInfoResp.Builder resp = ProtoBufUtil.toProtoBuf(GetEnterpriseExtensionInfoResp.newBuilder(), respJson);
+        return resp.build();
+    }
 }

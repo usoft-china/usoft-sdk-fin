@@ -203,3 +203,38 @@ message CapitalSideRepaymentPlan{
     string personInCharge = 8;          //经办人
     int32 status = 9;                   //是否执行还款
 }
+
+//放款信息提交实体
+message OpenCapitalSideLoanOther {
+    string financeDemandCode = 2;           //融资需求编号
+    string loanCode = 4;                    //放款编号
+    string receivablesArrivalDate = 8;      //应收账款到期日
+    double financeRate = 9;                //融资比例
+    double loanAmount = 10;                 //放款金额（元）
+    string loanDate = 11;                  //放款日期
+    string repaymentData = 12;             //还款日期
+    double loanRate = 13;                 //放款年利率
+    string repaymentFrequency = 14;        //还息频率
+    string fsCollectionBank = 15;          //客户收款开户行
+    string fsCollectionAccount = 16;      //客户收款账号
+    string fsCollectionName = 17;         //客户收款账号名称
+    double receiptForLoan = 18;           //借据余额（元）
+    double interestPayable = 19;           ///应还利息（元）
+    int32 beOverdue = 20;                 //是否逾期
+    int32 settle = 21;                     //是否结清
+    string applyDate = 22;                 //申请日期
+    string personInCharge = 23;            //经办人
+    int32 status = 24;                    ///状态
+    string approvalDate = 25;             //审批日期
+    string approvalMan = 26;              //审批人
+}
+
+//还款计划提交实体
+message OpenCapitalSideRepaymentPlanOther{
+    string repaymentData = 3;           //还款日期
+    string currency = 4;                //业务币种
+    double capitalAmount = 5;           //本期应还本金
+    double interest = 6;                //本期应还利息
+    double amount = 7;                  //本期还款额
+    string personInCharge = 8;          //经办人
+}

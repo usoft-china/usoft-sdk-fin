@@ -94,9 +94,8 @@ public class CapitalSideSdk extends BaseSdk {
 
     /**
      * [提交企业申请额度信息]
-     *
-     * @param req
-     * @return
+     * @author: linjh
+     * @date: 2019/12/24
      */
     public SaveOfferQuotaInfoResp saveOfferQuotaInfo(SaveOfferQuotaInfoReq.Builder req) throws Exception {
         String url = baseUrl + "/api/open/cs/saveOfferQuotaInfo";
@@ -108,15 +107,53 @@ public class CapitalSideSdk extends BaseSdk {
 
     /**
      * [企业申请额度信息审核]
-     *
-     * @param req
-     * @return
+     * @author: linjh
+     * @date: 2019/12/24
      */
     public UpdateOfferQuotaInfoResp updateOfferQuotaInfo(UpdateOfferQuotaInfoReq.Builder req) throws Exception {
         String url = baseUrl + "/api/open/cs/updateOfferQuotaInfo";
         String paramJson = genSignToJson(req);
         String respJson = HttpUtil.doPost(url, paramJson, timeout);
         UpdateOfferQuotaInfoResp.Builder resp = ProtoBufUtil.toProtoBuf(UpdateOfferQuotaInfoResp.newBuilder(), respJson);
+        return resp.build();
+    }
+
+    /**
+     * [提交放款信息]
+     * @author: linjh
+     * @date: 2020/1/7
+     */
+    public AddCapitalSideLoanResp addCapitalSideLoan(AddCapitalSideLoanReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/cs/addCapitalSideLoan";
+        String paramJson = genSignToJson(req);
+        String respJson = HttpUtil.doPost(url, paramJson, timeout);
+        AddCapitalSideLoanResp.Builder resp = ProtoBufUtil.toProtoBuf(AddCapitalSideLoanResp.newBuilder(), respJson);
+        return resp.build();
+    }
+
+    /**
+     * [获取放款记录列表]
+     * @author: linjh
+     * @date: 2020/1/7
+     **/
+    public GetCapitalSideLoanResp getCapitalSideLoan(GetCapitalSideLoanReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/cs/getCapitalSideLoan";
+        Map<String, String> params = genSignToMap(req);
+        String respJson = HttpUtil.doGet(url, params, timeout);
+        GetCapitalSideLoanResp.Builder resp = ProtoBufUtil.toProtoBuf(GetCapitalSideLoanResp.newBuilder(), respJson);
+        return resp.build();
+    }
+
+    /**
+     * [获取放款记录列表]
+     * @author: linjh
+     * @date: 2020/1/7
+     **/
+    public UpdateRepaymentPlanStatusResp updateRepaymentPlanStatus(UpdateRepaymentPlanStatusReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/cs/updateRepaymentPlanStatus";
+        String paramJson = genSignToJson(req);
+        String respJson = HttpUtil.doPost(url, paramJson, timeout);
+        UpdateRepaymentPlanStatusResp.Builder resp = ProtoBufUtil.toProtoBuf(UpdateRepaymentPlanStatusResp.newBuilder(), respJson);
         return resp.build();
     }
 

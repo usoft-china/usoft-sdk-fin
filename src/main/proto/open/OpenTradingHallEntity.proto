@@ -24,3 +24,373 @@ message RestBaseInfo {
     double fsDemandAmount = 16;   //融资需求总额
     double expectRate = 17; //期望年化利率
 }
+
+//爬虫爬取的企业信息
+message CompanyBasicInfosByErmRest{
+    string code = 1;                //唯一标识code
+    string enuu = 2;                //原始的ENUU
+    string en_code = 3;             //企业统一社会信用代码
+    string en_code_crawled = 4;     //爬取的企业统一社会信用代码
+    string en_name = 5;             //企业名称
+    string en_name_crawled = 6;     //爬取的企业名称
+    string en_email = 7;            //企业联系邮箱
+    string en_type = 8;             //企业类型
+    string en_legal_rep_name = 9;       //法定代表人
+    string en_reg_capital = 10;         //注册资本
+    string en_reg_date = 11;            //成立日期
+    string en_op_start_date = 12;       //营业期限自
+    string en_op_end_date = 13;         //营业期限至
+    string en_op_date = 14;             //企业营业期限
+    string en_reg_code = 15;            //企业注册号
+    string en_reg_unit = 16;            //登记机关
+    string en_reg_status = 17;          //登记状态
+    string en_varify_date = 18;         //核准日期
+    string en_reg_location = 19;        //登记住所
+    string en_op_range = 20;            //登记经营范围
+    string en_shareholders = 22;        //企业股东信息
+    string en_key_personnel = 23;       //企业主要人员
+    string en_changing_records = 24;    //企业变更记录
+}
+
+// 爬虫扩展信息实体
+message CompanyEnterpriseCrawlerListFinRest {
+    repeated CompanyJudgmentWritFinRest companyJudgmentWrit = 7;
+    repeated CompanyLawByExecutePersonInfoFinRest companyLawByExecutePersonInfo = 8;
+    CompanyLawInfoFinRest companyLawInfo = 9;
+    repeated CompanyOpenCourtNoticeFinRest companyOpenCourtNotice = 12;
+    repeated CompanyPutOnRecordInfoFinRest companyPutOnRecordInfo = 14;
+    repeated CompanyAdminPerChinaFinRest companyAdminPerChina = 1;
+    CompanyManageRiskFinRest companyManageRisk = 11;
+    repeated CompanyCourtNoticeRest companyCourtNotice = 2;
+    CompanyIndustryAndCommerceInfoRest companyIndustryAndCommerceInfo = 16;
+    string enuu = 17;
+    string enName = 18;
+    string conTheTaxCredit = 19;
+}
+
+message CompanyJudgmentWritFinRest{
+    string jubCaseName = 1;      //到数据表查看对应字段的意思
+    string jubCauseOfAction = 2;      //到数据表查看对应字段的意思
+    string jubCaseMoney = 3;      //到数据表查看对应字段的意思
+    string jubReleaseDate = 4;      //到数据表查看对应字段的意思
+    string jubCaseNumber = 5;      //到数据表查看对应字段的意思
+    string jubIdentity = 6;      //到数据表查看对应字段的意思
+    string jubExecutiveCourt = 7;      //到数据表查看对应字段的意思
+    int32 jubEnId = 8;      //到数据表查看对应字段的意思
+}
+
+message CompanyLawByExecutePersonInfoFinRest{
+    string byCaseNumber = 1;      //到数据表查看对应字段的意思
+    string byRegisterDate = 2;      //到数据表查看对应字段的意思
+    string byExecuteCourt = 3;      //到数据表查看对应字段的意思
+    string byExecuteObject = 4;      //到数据表查看对应字段的意思
+    string byExecutePerson = 5;      //到数据表查看对应字段的意思
+    string byIdNumber = 6;      //到数据表查看对应字段的意思
+    int32 byEnId = 7;      //到数据表查看对应字段的意思
+}
+
+message CompanyLawInfoFinRest{
+    string enName = 1;      //到数据表查看对应字段的意思
+    string enIntro = 2;      //到数据表查看对应字段的意思
+    string laBreakFaithExPer = 3;      //到数据表查看对应字段的意思
+    string laServiceNotice = 4;      //到数据表查看对应字段的意思
+    string laEquityFreezing = 5;      //到数据表查看对应字段的意思
+    int32 laEnId = 6;      //到数据表查看对应字段的意思
+}
+message CompanyOpenCourtNoticeFinRest{
+    string openRecordNumber = 1;      //到数据表查看对应字段的意思
+    string openTime = 2;      //到数据表查看对应字段的意思
+    string openCauseOfAction = 3;      //到数据表查看对应字段的意思
+    string openAccuser = 4;      //到数据表查看对应字段的意思
+    string openAppellee = 5;      //到数据表查看对应字段的意思
+    string openRegion = 6;      //到数据表查看对应字段的意思
+    string openScheduleDate = 7;      //到数据表查看对应字段的意思
+    string openUndertakeDepartment = 8;      //到数据表查看对应字段的意思
+    string openPresidingJudge = 9;      //到数据表查看对应字段的意思
+    string openThirdParty = 10;      //到数据表查看对应字段的意思
+    string openCourt = 11;      //到数据表查看对应字段的意思
+    string openTribunal = 12;      //到数据表查看对应字段的意思
+    string openContent = 13;      //到数据表查看对应字段的意思
+    int32 openEnId = 14;      //到数据表查看对应字段的意思
+}
+
+message CompanyPutOnRecordInfoFinRest{
+    string putCaseNumber = 1;      //到数据表查看对应字段的意思
+    string putDate = 2;      //到数据表查看对应字段的意思
+    string putPublicProsecutor = 3;      //到数据表查看对应字段的意思
+    string putDefendant = 4;      //到数据表查看对应字段的意思
+    string putCaseCause = 5;      //到数据表查看对应字段的意思
+    string putOpenDate = 6;      //到数据表查看对应字段的意思
+    string putFinishDate = 7;      //到数据表查看对应字段的意思
+    string putUndertakeDepartment = 8;      //到数据表查看对应字段的意思
+    string putCourt = 9;      //到数据表查看对应字段的意思
+    string putUndertakeJudge = 10;      //到数据表查看对应字段的意思
+    string putJudgeAssistant = 11;      //到数据表查看对应字段的意思
+    string putCaseType = 12;      //到数据表查看对应字段的意思
+    string putCaseState = 13;      //到数据表查看对应字段的意思
+    string putThirdParty = 14;      //到数据表查看对应字段的意思
+    int32 putEnId = 15;      //到数据表查看对应字段的意思
+}
+
+message CompanyAdminPerChinaFinRest{
+    string adminName = 1;      //到数据表查看对应字段的意思
+    string adminPermissionOffice = 2;      //到数据表查看对应字段的意思
+    string adminDecisionNum = 3;      //到数据表查看对应字段的意思
+    string adminDecisionDate = 4;      //到数据表查看对应字段的意思
+    string adminState = 5;      //到数据表查看对应字段的意思
+    string adminContent = 6;      //到数据表查看对应字段的意思
+    string adminExpirationDate = 7;      //到数据表查看对应字段的意思
+    string adminType = 8;      //到数据表查看对应字段的意思
+    string adminTerritory = 9;      //到数据表查看对应字段的意思
+    int32 adminEnId = 10;      //到数据表查看对应字段的意思
+}
+
+
+message CompanyManageRiskFinRest{
+    string manageAbnormalOut = 1;      //到数据表查看对应字段的意思
+    string manageAbnormalIn = 2;      //到数据表查看对应字段的意思
+    string severityBreakTheLaw = 3;      //到数据表查看对应字段的意思
+    string equityPledge = 4;      //到数据表查看对应字段的意思
+    string pledgeOfStockRight = 5;      //到数据表查看对应字段的意思
+    string administrativePenaltyIndustrial = 6;      //到数据表查看对应字段的意思
+    string administrativePenaltyTax = 7;      //到数据表查看对应字段的意思
+    string administrativePenaltyCredit = 8;      //到数据表查看对应字段的意思
+    string environmentalPenalties = 9;      //到数据表查看对应字段的意思
+    string theTaxIllegal = 10;      //到数据表查看对应字段的意思
+    string chattelMortgage = 11;      //到数据表查看对应字段的意思
+    string clearingInfo = 12;      //到数据表查看对应字段的意思
+    string judicialSale = 13;      //到数据表查看对应字段的意思
+    string landMortgage = 14;      //到数据表查看对应字段的意思
+    string simpleCancellation = 15;      //到数据表查看对应字段的意思
+    string serviceByPublication = 16;      //到数据表查看对应字段的意思
+    int32 manageRiskEnId = 17;      //到数据表查看对应字段的意思
+}
+
+message CompanyCourtNoticeRest{
+    string courtAppellor = 1;      //到数据表查看对应字段的意思
+    string courtByAppellor = 2;      //到数据表查看对应字段的意思
+    string courtNoticeType = 3;      //到数据表查看对应字段的意思
+    string courtNoticePerson = 4;      //到数据表查看对应字段的意思
+    string courtPublishDate = 5;      //到数据表查看对应字段的意思
+    string courtPublishLayout = 6;      //到数据表查看对应字段的意思
+    string courtUploadingDate = 7;      //到数据表查看对应字段的意思
+    string courtContent = 8;                            //法院公告内容
+    int32 courtEnId = 9;                                //关联公司信息表id
+}
+
+
+message CompanyIndustryAndCommerceInfoRest{
+    string legalRepresentative = 1;      //到数据表查看对应字段的意思
+    string registeredCapital = 2;      //到数据表查看对应字段的意思
+    string contributedCapital = 3;      //到数据表查看对应字段的意思
+    string managementForms = 4;      //到数据表查看对应字段的意思
+    string setUpDate = 5;      //到数据表查看对应字段的意思
+    string unifiedSocialCreditCode = 6;      //到数据表查看对应字段的意思
+    string identifyNumber = 7;      //到数据表查看对应字段的意思
+    string registrationNumber = 8;      //到数据表查看对应字段的意思
+    string institutionalFrameworkCode = 9;      //到数据表查看对应字段的意思
+    string enType = 10;      //到数据表查看对应字段的意思
+    string industryInvolved = 11;      //到数据表查看对应字段的意思
+    string dateOfApproval = 12;      //到数据表查看对应字段的意思
+    string registrationAuthority = 13;      //到数据表查看对应字段的意思
+    string areaName = 14;      //到数据表查看对应字段的意思
+    string englishName = 15;      //到数据表查看对应字段的意思
+    string formerName = 16;      //到数据表查看对应字段的意思
+    string insuredNumberOfPeople = 17;      //到数据表查看对应字段的意思
+    string staffSize = 18;      //到数据表查看对应字段的意思
+    string operatingPeriod = 19;      //到数据表查看对应字段的意思
+    string enAddress = 20;      //到数据表查看对应字段的意思
+    string runScope = 21;      //到数据表查看对应字段的意思
+    string sponsor = 22;        //
+    string fundingSource = 23;        //
+}
+
+//erp数据源返回数据信息
+message ErpDataInfoRest {
+    repeated ErpPurchaseInfo  erpPurchase=1;
+    repeated ErpSaleInfo erpSale=2;
+    repeated ErpCashFlowInfo erpCashFlow=3;
+    repeated ErpBalanceSheetInfo erpBalanceSheet=4;
+    repeated ErpProfitInfo erpProfit=5;
+    repeated ErpCalculationOfEachIndex erpCalculationOfEachIndexYear=6;
+    repeated ErpCalculationOfEachIndex erpCalculationOfEachIndexLastYear=7;
+    repeated ErpCalculationOfEachIndex erpCalculationOfEachIndexBeforeYear=8;
+    repeated ErpCalculationOfEachIndex erpCalculationOfEachIndexBeforeLastYear=9;
+}
+
+//采购情况
+message ErpPurchaseInfo {
+    //年份
+    int32 year = 1;
+    //采购总额（万元）
+    double purchaseTotal = 2;
+    //采购总笔数
+    int32 purchaseNumberCount = 3;
+    //供应商数量（家）
+    int32 suppliersNumber = 4;
+    //前五大供应商
+    repeated ErpTopFiveSuppliersInfo topFiveSuppliers = 5;
+}
+//销售情况
+message ErpSaleInfo {
+    //年份
+    int32 year = 1;
+    //销售总额（万元）
+    double salesTotal = 2;
+    //增值税发票金额（万元）
+    double vatInvoiceAmount = 3;
+    //客户数量（家）
+    int32 customersCount = 4;
+    //前五大客户
+    repeated ErpTopFiveCustomersInfo  topFiveCustomers = 5;
+}
+//现金流量表
+message ErpCashFlowInfo {
+    //年份
+    int32 year = 1;
+    //营业性现金流
+    double operatingCashFlow =2;
+    //投资性现金流
+    double investmentCashFlow =3;
+    //筹资性现金流
+    double financingCashFlow =4;
+    //净现金流
+    double netCashFlow =5;
+}
+//资产负债表
+message ErpBalanceSheetInfo {
+    //年份
+    int32 year = 1;
+    //存货
+    double stock =2;
+    //应收账款
+    double accountsReceivable =3;
+    //预付账款
+    double prepayments =4;
+    //1年内到期的非流动资产
+    double oneYearNonCurrentAssets =5;
+    //流动资产合计
+    double currentAssetsCount =6;
+    //固定资产
+    double fixedAssets =7;
+    //资产合计
+    double assetsCount =8;
+    //流动负债合计
+    double currentLiabilitiesCount =9;
+    //负债合计
+    double liabilitiesCount =10;
+    //所有者权益合计
+    double  ownersEquity =11;
+}
+//利润表
+message ErpProfitInfo {
+    //年份
+    int32 year =1;
+    //营业收入
+    double businessIncome =2;
+    //营业成本
+    double operatingCost =3;
+    //营业税金及附加
+    double salesTax =4;
+    //销售费用
+    double sellingCost =5;
+    //管理费用
+    double managementCost =6;
+    //财务费用
+    double financialCost =7;
+    //营业利润
+    double operatingProfit =8;
+    //净利润
+    double netProfit =9;
+}
+
+//前五大供应商
+message ErpTopFiveSuppliersInfo {
+    //名称
+    string nane=1;
+    //编号
+    string code=2;
+    //采购额（万元）
+    double amount=3;
+    //占总采购比例（%）
+    double purchaseTotalProportion=4;
+    //合作年限（年）
+    double cooperationYear=5;
+}
+//前五大客户
+message ErpTopFiveCustomersInfo {
+    //名称
+    string nane=1;
+    //编号
+    string code=2;
+    //销售额（万元）
+    double salesAmount=3;
+    //占总销售比例（%）
+    double salesTotalProportion=4;
+    //合作年限（年）
+    double cooperationYear=5;
+}
+//盈利能力指标、资产质量指标、债务风险指标、经营增长指标
+message ErpCalculationOfEachIndex {
+    //净资产周转率
+    double turnoverRateOfNetAssets = 1;
+    //总资产报酬率
+    double returnOnTotalAssets = 2;
+    //销售（营业）利润率
+    double salesProfitMargin = 3;
+    //总资产周转率（次）
+    double turnoverRateOfTotalAssets = 4;
+    //应收账款周转率（次）
+    double turnoverRateOfAccountsReceivable = 5;
+    //存货周转速度（次）
+    double inventoryTurnoverSpeed = 6;
+    //资产负债率（%）
+    double assetLiabilityRatio = 7;
+    //现金流动负债比率（%）
+    double cashFlowLiabilityRatio = 8;
+    //速动比率（%）
+    double quickRatio = 9;
+    //销售增长率（%）
+    double salesGrowthRate = 10;
+    //销售（营业）利润增长率（%）
+    double operatingProfitGrowthRate = 11;
+    //总资产增长率（%）
+    double growthRateOfTotalAssets = 12;
+}
+
+message TransactionsRest{
+    double acceptSum = 1;   //销售总额
+    int32 saleNumber = 2;   //销售笔数（笔）
+    double refund =3;       //验退总额（万元）
+    int32 refundNumber=4;   //验退笔数（笔）
+    double returnGoods=5;    //退货率（%）
+    double averageAmount=6;    //平均单笔订单金额（万元）
+    int32 buyer=7;          //买方企业数量（家）
+}
+
+//近三年采购情况
+message Purchase {
+    double purchaseMoney = 1; //采购金额
+    double purchaseNum = 2; //采购笔数
+}
+
+//B2B数据源信息
+message B2bDataInfoRest {
+    int32 enuu = 2; // 企业uu
+    string enname = 3; // 企业名称
+    double timeSum = 4; // 平台总交易时间
+    double acceptSum = 5; // 平台总交易金额（万元）
+    int32 buyerSum=6;       //买方企业数量（家）
+    int32 saleNumberSum=7;  //累计销售笔数（笔）
+    int32 year = 8; // 今年
+    TransactionsRest thisYear = 9;  //今年数据
+    TransactionsRest lastYear = 10;  //去年数据
+    TransactionsRest beforeYear = 11;  //前年数据
+    double sumPurchaseMoneyTotal = 12; //累计采购金额
+    double sumPurchaseNumTotal = 13; //累计采购笔数
+    double sumPurchaseTimeTotal = 14; //累计采购时间
+    int32 sellerSum = 15; //卖方企业数量
+    Purchase thisPurchaseYear = 16; //今年采购数据
+    Purchase lastPurchaseYear = 17; //去年采购数据
+    Purchase beforePurchaseYear = 18; //前年采购数据
+}

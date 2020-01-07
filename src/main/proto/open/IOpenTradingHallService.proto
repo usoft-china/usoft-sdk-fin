@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "open/OpenTradingHallEntity.proto";
 import "open/OpenFinancingSideEntity.proto";
+import "open/OpenCapitalSideEntity.proto";
 import "BaseRestEntity.proto";
 package fin.open;
 option java_multiple_files = true;
@@ -17,6 +18,10 @@ service IOpenTradingHallService {
     rpc GetAcceptOrderByAcceptId (GetAcceptOrderByAcceptIdReq) returns (GetAcceptOrderByAcceptIdResp);
     // 通过enuu获取融资方信息-restAPI /api/open/factoring/baseInfo, method:get, type:kv
     rpc getBaseInfo (GetBaseInfoReq) returns (GetBaseInfoResp);
+    // 获取放款信息记录、还款计划记录公共方法-restAPI /api/open/factoring/getCapitalSideLoanAndRepaymentPlan, method:get, type:kv
+    rpc getCapitalSideLoanAndRepaymentPlan (GetCapitalSideLoanAndRepaymentPlanReq) returns (GetCapitalSideLoanAndRepaymentPlanResp);
+    // 保理大厅详情获取企业扩展信息-restAPI /api/open/factring/getEnterpriseExtensionInfo, method:get, type:kv
+    rpc getEnterpriseExtensionInfo (GetEnterpriseExtensionInfoReq) returns (GetEnterpriseExtensionInfoResp);
 }
 
 // 获取融资方列表--请求
@@ -82,4 +87,31 @@ message GetBaseInfoReq {
 message GetBaseInfoResp {
     RespHeader respHeader = 1; // 响应头信息
     RestBaseInfo baseInfo = 2;
+}
+
+// 获取放款信息记录、还款计划记录公共方法--请求
+message GetCapitalSideLoanAndRepaymentPlanReq {
+    int32 enuu = 1; //查询的企业uu
+    string code = 2; //融资需求编号
+}
+
+// 获取放款信息记录、还款计划记录公共方法--响应
+message GetCapitalSideLoanAndRepaymentPlanResp {
+    RespHeader respHeader = 1; // 响应头信息
+    CapitalSideLoanAndRepaymentPlan capitalSideLoanAndRepaymentPlan = 2; //(资金方放款信息表)与(资金方还款计划表)
+}
+
+// 获取爬虫采集的企业扩展信息 请求参数
+message GetEnterpriseExtensionInfoReq {
+    int32 enuu = 1;
+}
+
+// 获取爬虫采集的企业扩展信息 响应参数
+message GetEnterpriseExtensionInfoResp {
+    RespHeader respHeader = 1; // 响应头信息
+    CompanyBasicInfosByErmRest companyBasicInfo = 2;      //基础信息
+    CompanyEnterpriseCrawlerListFinRest companyEnterpriseCrawlerList = 3; //企业信用数据
+    ErpDataInfoRest erpDataInfo = 4;            //获取erp财务数据
+    B2bDataInfoRest b2bDataInfo = 5;            //获取b2b近3年数据
+    repeated CapitalSideLoan capitalSideLoan = 6;          //历史融资明细
 }

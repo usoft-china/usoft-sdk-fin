@@ -25,7 +25,12 @@ service IOpenCapitalSideService {
     rpc getOfferQuotaInfoList (GetOfferQuotaInfoListReq) returns (GetOfferQuotaInfoListResp);
     // 获取企业申请额度信息详情-restAPI /api/open/cs/getOfferQuotaInfoByCode, method:get, type:kv
     rpc getOfferQuotaInfoByCode(GetOfferQuotaInfoByCodeReq) returns (GetOfferQuotaInfoByCodeResp);
-
+    //提交放款信息  -restAPI /api/open/cs/addCapitalSideLoan, method:post, type:kv
+    rpc addCapitalSideLoan(AddCapitalSideLoanReq) returns (AddCapitalSideLoanResp);
+    //获取放款记录列表-restAPI /api/open/cs/getCapitalSideLoan, method:get, type:kv
+    rpc getCapitalSideLoan(GetCapitalSideLoanReq) returns (GetCapitalSideLoanResp);
+    //更新执行还款记录状态  -restAPI /api/open/cs/updateRepaymentPlanStatus, method:post, type:kv
+    rpc updateRepaymentPlanStatus(UpdateRepaymentPlanStatusReq) returns (UpdateRepaymentPlanStatusResp);
 }
 
 // 查看融资记录列表 请求
@@ -161,4 +166,48 @@ message GetOfferQuotaInfoByCodeReq{
 message GetOfferQuotaInfoByCodeResp{
     RespHeader respHeader = 1; // 响应头信息 // 响应头信息
     OfferQuotaInfoRest offerQuoteInfo = 2;          //报价额度实体
+}
+
+//提交放款信息 请求参数
+message AddCapitalSideLoanReq{
+    RespHeader reqHeader = 1; //请求头信息
+    string signature = 2; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 3; //秘密身份ID
+    OpenCapitalSideLoanOther capitalSideLoan = 4; //放款信息
+    repeated OpenCapitalSideRepaymentPlanOther capitalSideRepaymentPlan = 5; //还款计划
+    int32 enuu = 6; //企业方enuu
+}
+
+//提交放款信息 响应参数
+message AddCapitalSideLoanResp{
+    RespHeader respHeader = 1; // 响应头信息
+}
+
+//获取放款记录列表 请求参数
+message GetCapitalSideLoanReq{
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 pageSize = 3; // 每页大小
+    int32 pageNumber = 4; // 页码
+    int32 fsEnuu = 5;   //融资方enuu（二选一，非必填）
+    int32 csEnuu = 6;   //资金方enuu（二选一，非必填）
+}
+
+//获取放款记录列表 响应参数
+message GetCapitalSideLoanResp{
+    RespHeader respHeader = 1; // 响应头信息
+    repeated CapitalSideLoan capitalSideLoan = 2;          //报价额度实体
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+
+//更新执行还款记录状态 请求参数
+message UpdateRepaymentPlanStatusReq{
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    string capitalSideRepaymentPlanCode = 3; //还款计划编号
+}
+
+//更新执行还款记录状态 响应参数
+message UpdateRepaymentPlanStatusResp{
+    RespHeader respHeader = 1; // 响应头信息
 }

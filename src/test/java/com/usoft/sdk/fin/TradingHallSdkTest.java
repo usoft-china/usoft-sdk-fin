@@ -51,4 +51,21 @@ public class TradingHallSdkTest {
         GetBaseInfoResp resp = tradingHallSdk.getBaseInfo(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
+
+    @Test
+    public void getCapitalSideLoanAndRepaymentPlan() throws Exception {
+        GetCapitalSideLoanAndRepaymentPlanReq.Builder req = GetCapitalSideLoanAndRepaymentPlanReq.newBuilder();
+        req.setEnuu(10042875);
+        req.setCode("73191218665544296649");
+        GetCapitalSideLoanAndRepaymentPlanResp resp = tradingHallSdk.getCapitalSideLoanAndRepaymentPlan(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
+
+    @Test
+    public void getEnterpriseExtensionInfo() throws Exception {
+        GetEnterpriseExtensionInfoReq.Builder req = GetEnterpriseExtensionInfoReq.newBuilder();
+        req.setEnuu(10042875);
+        GetEnterpriseExtensionInfoResp resp = tradingHallSdk.getEnterpriseExtensionInfo(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
 }
