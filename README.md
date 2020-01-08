@@ -15,7 +15,9 @@ u智融项目的sdk包
   <url>https://artifactory.uuzcc.cn/artifactory/libs-release</url>
 </repository>
 <repository>
-  <snapshots />
+  <snapshots>
+      <enabled>false</enabled>
+  </snapshots>
   <id>snapshots</id>
   <name>libs-snapshot</name>
   <url>https://artifactory.uuzcc.cn/artifactory/libs-snapshot</url>
@@ -27,7 +29,7 @@ u智融项目的sdk包
 ```
 <dependency>
     <groupId>com.usoft.sdk</groupId>
-    <artifactId>usoft-sdk-erm</artifactId>
+    <artifactId>usoft-sdk-fin</artifactId>
     <version>1.0</version>
 </dependency>
 ```
