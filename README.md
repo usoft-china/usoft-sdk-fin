@@ -15,9 +15,7 @@ u智融项目的sdk包
   <url>https://artifactory.uuzcc.cn/artifactory/libs-release</url>
 </repository>
 <repository>
-  <snapshots>
-      <enabled>false</enabled>
-  </snapshots>
+  <snapshots />
   <id>snapshots</id>
   <name>libs-snapshot</name>
   <url>https://artifactory.uuzcc.cn/artifactory/libs-snapshot</url>
