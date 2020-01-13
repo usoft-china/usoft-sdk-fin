@@ -157,4 +157,16 @@ public class CapitalSideSdk extends BaseSdk {
         return resp.build();
     }
 
+    /**
+     * [获取收藏企业列表]
+     * @author: linjh
+     * @date: 2020/1/13
+     **/
+    public GetCollectionListResp getCollectionList(GetCollectionListReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/factoring/cs/getCollectionList";
+        Map<String, String> paramJson = genSignToMap(req);
+        String respJson = HttpUtil.doGet(url, paramJson, timeout);
+        GetCollectionListResp.Builder resp = ProtoBufUtil.toProtoBuf(GetCollectionListResp.newBuilder(), respJson);
+        return resp.build();
+    }
 }

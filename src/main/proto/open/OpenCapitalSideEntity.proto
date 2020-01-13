@@ -238,3 +238,11 @@ message OpenCapitalSideRepaymentPlanOther{
     double amount = 7;                  //本期还款额
     string personInCharge = 8;          //经办人
 }
+
+//收藏企业实体
+message CollectionRestInfo{
+    string enName = 1; // 企业名称
+    int32 enuu = 2; //企业enuu
+    string grade = 3; //企业评级
+    string collectionTime = 5; //收藏时间
+}

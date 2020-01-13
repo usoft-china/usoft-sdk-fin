@@ -31,6 +31,8 @@ service IOpenCapitalSideService {
     rpc getCapitalSideLoan(GetCapitalSideLoanReq) returns (GetCapitalSideLoanResp);
     //更新执行还款记录状态  -restAPI /api/open/cs/updateRepaymentPlanStatus, method:post, type:kv
     rpc updateRepaymentPlanStatus(UpdateRepaymentPlanStatusReq) returns (UpdateRepaymentPlanStatusResp);
+    // 获取收藏企业列表-restAPI /api/open/factoring/cs/getCollectionList, method:get, type:kv
+    rpc getCollectionList (GetCollectionListReq) returns (GetCollectionListResp) {}
 }
 
 // 查看融资记录列表 请求
@@ -130,6 +132,7 @@ message GetFinanceOfferListReq {
     int32 pageSize = 3; // 每页大小
     int32 pageNumber = 4; // 页码
     int32 enuu = 5; //资金方enuu
+    int64 updateTime = 6;   //申请时间 （时间戳） （非必填）
 }
 // 查看报价记录列表
 message GetFinanceOfferListResp {
@@ -147,6 +150,7 @@ message GetOfferQuotaInfoListReq{
     int32 pageNumber = 5; // 页码
     int32 fsEnuu = 6;   //融资方enuu
     int32 status = 7;   //申请额度状态
+    int64 updateTime = 8;   //申请时间 （时间戳） （非必填）
 }
 //获取企业申请额度信息列表 响应信息
 message GetOfferQuotaInfoListResp{
@@ -191,6 +195,7 @@ message GetCapitalSideLoanReq{
     int32 pageNumber = 4; // 页码
     int32 fsEnuu = 5;   //融资方enuu（二选一，非必填）
     int32 csEnuu = 6;   //资金方enuu（二选一，非必填）
+    int64 updateTime = 7;   //申请时间 （时间戳） （非必填）
 }
 
 //获取放款记录列表 响应参数
@@ -210,4 +215,20 @@ message UpdateRepaymentPlanStatusReq{
 //更新执行还款记录状态 响应参数
 message UpdateRepaymentPlanStatusResp{
     RespHeader respHeader = 1; // 响应头信息
+}
+
+// 收藏企业实体()
+message GetCollectionListReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 pageSize = 3; // 每页大小
+    int32 pageNumber = 4; // 页码
+    int64 updateTime = 5;   //申请时间 （时间戳）（非必填）
+}
+
+// 收藏企业实体()
+message GetCollectionListResp {
+    RespHeader respHeader = 1; // 响应头信息
+    repeated CollectionRestInfo collectionInfo = 2;
+    PagingInfo pagingInfo = 3; // 分页信息
 }

@@ -41,6 +41,7 @@ public class CapitalSideSdkTest {
 		req.setEnuu(10042875);
 		req.setPageNumber(1);
 		req.setPageSize(10);
+		req.setUpdateTime(1577232000000L);
 		GetFinanceOfferListResp resp = capitalSideSdk.getFinanceOfferList(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}
@@ -59,6 +60,7 @@ public class CapitalSideSdkTest {
 		req.setCsEnuu(10042875);
 		req.setPageNumber(1);
 		req.setPageSize(10);
+		req.setUpdateTime(1578879998000L);
 		GetOfferQuotaInfoListResp resp = capitalSideSdk.getOfferQuotaInfoList(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}
@@ -164,6 +166,7 @@ public class CapitalSideSdkTest {
         req.setPageSize(10);
         req.setPageNumber(1);
         req.setCsEnuu(10042875);
+        req.setUpdateTime(1578879998000L);
         GetCapitalSideLoanResp resp = capitalSideSdk.getCapitalSideLoan(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
@@ -173,6 +176,16 @@ public class CapitalSideSdkTest {
         UpdateRepaymentPlanStatusReq.Builder req = UpdateRepaymentPlanStatusReq.newBuilder();
         req.setCapitalSideRepaymentPlanCode("87200102793370509102");
         UpdateRepaymentPlanStatusResp resp = capitalSideSdk.updateRepaymentPlanStatus(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
+
+    @Test
+    public void getCollectionList() throws Exception {
+        GetCollectionListReq.Builder req = GetCollectionListReq.newBuilder();
+        req.setPageSize(10);
+        req.setPageNumber(1);
+        req.setUpdateTime(1578879998000L);
+        GetCollectionListResp resp = capitalSideSdk.getCollectionList(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
 }
