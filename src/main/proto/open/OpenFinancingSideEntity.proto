@@ -107,6 +107,7 @@ message FinanceSideRestInfo {
     string companProfile= 15;        //企业简介
     double fsDemandAmount = 16;   //融资需求总额
     double expectRate = 17; //期望年化利率
+    int32 collection = 18;  //是否收藏，1：是，2：否
 }
 
 //融资记录详情(含报价列表，融资需求相关信息)

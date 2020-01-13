@@ -37,6 +37,7 @@ message GetFinanceSidesReq {
     double minOfferRateEnd = 9; // 最低报价利率
     double maxOfferRateStart = 10; // 最高报价利率
     double maxOfferRateEnd = 11; // 最高报价利率
+    int32 csEnuu = 12;  //资金方enuu
 }
 
 // 获取融资方列表--响应

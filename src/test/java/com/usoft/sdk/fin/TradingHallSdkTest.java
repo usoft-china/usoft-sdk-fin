@@ -20,6 +20,7 @@ public class TradingHallSdkTest {
         GetFinanceSidesReq.Builder req = GetFinanceSidesReq.newBuilder();
         req.setPageNumber(1);
         req.setPageSize(10);
+        req.setCsEnuu(10042875);
         GetFinanceSidesResp resp = tradingHallSdk.getFinanceSides(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
