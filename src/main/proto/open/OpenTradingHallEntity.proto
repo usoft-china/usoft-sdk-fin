@@ -29,27 +29,27 @@ message RestBaseInfo {
 message CompanyBasicInfosByErmRest{
     string code = 1;                //唯一标识code
     string enuu = 2;                //原始的ENUU
-    string en_code = 3;             //企业统一社会信用代码
-    string en_code_crawled = 4;     //爬取的企业统一社会信用代码
-    string en_name = 5;             //企业名称
-    string en_name_crawled = 6;     //爬取的企业名称
-    string en_email = 7;            //企业联系邮箱
-    string en_type = 8;             //企业类型
-    string en_legal_rep_name = 9;       //法定代表人
-    string en_reg_capital = 10;         //注册资本
-    string en_reg_date = 11;            //成立日期
-    string en_op_start_date = 12;       //营业期限自
-    string en_op_end_date = 13;         //营业期限至
-    string en_op_date = 14;             //企业营业期限
-    string en_reg_code = 15;            //企业注册号
-    string en_reg_unit = 16;            //登记机关
-    string en_reg_status = 17;          //登记状态
-    string en_varify_date = 18;         //核准日期
-    string en_reg_location = 19;        //登记住所
-    string en_op_range = 20;            //登记经营范围
-    string en_shareholders = 22;        //企业股东信息
-    string en_key_personnel = 23;       //企业主要人员
-    string en_changing_records = 24;    //企业变更记录
+    string enCode = 3;              //企业统一社会信用代码
+    string enCodeCrawled = 4;       //爬取的企业统一社会信用代码
+    string enName = 5;              //企业名称
+    string enNameCrawled = 6;       //爬取的企业名称
+    string enEmail = 7;             //企业联系邮箱
+    string enType = 8;              //企业类型
+    string enLegalRepName = 9;      //法定代表人
+    string enRegCapital = 10;       //注册资本
+    string enRegDate = 11;          //成立日期
+    string enOpStartDate = 12;      //营业期限自
+    string enOpEndDate = 13;        //营业期限至
+    string enOpDate = 14;           //企业营业期限
+    string enRegCode = 15;          //企业注册号
+    string enRegUnit = 16;          //登记机关
+    string enRegStatus = 17;        //登记状态
+    string enVarifyDate = 18;       //核准日期
+    string enRegLocation = 19;      //登记住所
+    string enOpRange = 20;          //登记经营范围
+    string enShareholders = 22;     //企业股东信息
+    string enKeyPersonnel = 23;     //企业主要人员
+    string enChangingRecords = 24;  //企业变更记录
 }
 
 // 爬虫扩展信息实体
@@ -69,140 +69,140 @@ message CompanyEnterpriseCrawlerListFinRest {
 }
 
 message CompanyJudgmentWritFinRest{
-    string jubCaseName = 1;      //到数据表查看对应字段的意思
-    string jubCauseOfAction = 2;      //到数据表查看对应字段的意思
-    string jubCaseMoney = 3;      //到数据表查看对应字段的意思
-    string jubReleaseDate = 4;      //到数据表查看对应字段的意思
-    string jubCaseNumber = 5;      //到数据表查看对应字段的意思
-    string jubIdentity = 6;      //到数据表查看对应字段的意思
-    string jubExecutiveCourt = 7;      //到数据表查看对应字段的意思
-    int32 jubEnId = 8;      //到数据表查看对应字段的意思
+    string jubCaseName = 1;             //判决文书案件名称
+    string jubCauseOfAction = 2;        //判决文书案由
+    string jubCaseMoney = 3;            //判决文书案件金额
+    string jubReleaseDate = 4;          //判决文书发布日期
+    string jubCaseNumber = 5;           //判决文书案号
+    string jubIdentity = 6;             //判决文书身份
+    string jubExecutiveCourt = 7;       //执行法院
+    int32 jubEnId = 8;                  //关联公司信息id
 }
 
 message CompanyLawByExecutePersonInfoFinRest{
-    string byCaseNumber = 1;      //到数据表查看对应字段的意思
-    string byRegisterDate = 2;      //到数据表查看对应字段的意思
-    string byExecuteCourt = 3;      //到数据表查看对应字段的意思
-    string byExecuteObject = 4;      //到数据表查看对应字段的意思
-    string byExecutePerson = 5;      //到数据表查看对应字段的意思
-    string byIdNumber = 6;      //到数据表查看对应字段的意思
-    int32 byEnId = 7;      //到数据表查看对应字段的意思
+    string byCaseNumber = 1;        //被执行人信息案号
+    string byRegisterDate = 2;      //被执行人信息立案日期
+    string byExecuteCourt = 3;      //被执行人信息执行法院
+    string byExecuteObject = 4;     //被执行人信息执行标的
+    string byExecutePerson = 5;     //被执行人
+    string byIdNumber = 6;          //身份证号/机构代码
+    int32 byEnId = 7;               //关联企业信息表id
 }
 
 message CompanyLawInfoFinRest{
-    string enName = 1;      //到数据表查看对应字段的意思
-    string enIntro = 2;      //到数据表查看对应字段的意思
-    string laBreakFaithExPer = 3;      //到数据表查看对应字段的意思
-    string laServiceNotice = 4;      //到数据表查看对应字段的意思
-    string laEquityFreezing = 5;      //到数据表查看对应字段的意思
-    int32 laEnId = 6;      //到数据表查看对应字段的意思
+    string enName = 1;                  //企业名称
+    string enIntro = 2;                 //企业简介
+    string laBreakFaithExPer = 3;       //失信被执行人
+    string laServiceNotice = 4;         //送达公告
+    string laEquityFreezing = 5;        //股权冻结
+    int32 laEnId = 6;                   //关联公司表id字段
 }
 message CompanyOpenCourtNoticeFinRest{
-    string openRecordNumber = 1;      //到数据表查看对应字段的意思
-    string openTime = 2;      //到数据表查看对应字段的意思
-    string openCauseOfAction = 3;      //到数据表查看对应字段的意思
-    string openAccuser = 4;      //到数据表查看对应字段的意思
-    string openAppellee = 5;      //到数据表查看对应字段的意思
-    string openRegion = 6;      //到数据表查看对应字段的意思
-    string openScheduleDate = 7;      //到数据表查看对应字段的意思
-    string openUndertakeDepartment = 8;      //到数据表查看对应字段的意思
-    string openPresidingJudge = 9;      //到数据表查看对应字段的意思
-    string openThirdParty = 10;      //到数据表查看对应字段的意思
-    string openCourt = 11;      //到数据表查看对应字段的意思
-    string openTribunal = 12;      //到数据表查看对应字段的意思
-    string openContent = 13;      //到数据表查看对应字段的意思
-    int32 openEnId = 14;      //到数据表查看对应字段的意思
+    string openRecordNumber = 1;                    //开庭公告案号
+    string openTime = 2;                            //开庭公告开庭时间
+    string openCauseOfAction = 3;                   //开庭公告案由
+    string openAccuser = 4;                         //开庭公告公诉人/原告
+    string openAppellee = 5;                        //开庭公告被告人/被告
+    string openRegion = 6;                          //开庭公告地区
+    string openScheduleDate = 7;                    //开庭公告排期日期
+    string openUndertakeDepartment = 8;             //开庭公告承办部门
+    string openPresidingJudge = 9;                  //开庭公告审判长
+    string openThirdParty = 10;                     //开庭公告第三方人
+    string openCourt = 11;                          //开庭公告法院
+    string openTribunal = 12;                       //开庭公告法庭
+    string openContent = 13;                        //开庭公告公告内容
+    int32 openEnId = 14;                            //关联企业信息表id
 }
 
 message CompanyPutOnRecordInfoFinRest{
-    string putCaseNumber = 1;      //到数据表查看对应字段的意思
-    string putDate = 2;      //到数据表查看对应字段的意思
-    string putPublicProsecutor = 3;      //到数据表查看对应字段的意思
-    string putDefendant = 4;      //到数据表查看对应字段的意思
-    string putCaseCause = 5;      //到数据表查看对应字段的意思
-    string putOpenDate = 6;      //到数据表查看对应字段的意思
-    string putFinishDate = 7;      //到数据表查看对应字段的意思
-    string putUndertakeDepartment = 8;      //到数据表查看对应字段的意思
-    string putCourt = 9;      //到数据表查看对应字段的意思
-    string putUndertakeJudge = 10;      //到数据表查看对应字段的意思
-    string putJudgeAssistant = 11;      //到数据表查看对应字段的意思
-    string putCaseType = 12;      //到数据表查看对应字段的意思
-    string putCaseState = 13;      //到数据表查看对应字段的意思
-    string putThirdParty = 14;      //到数据表查看对应字段的意思
-    int32 putEnId = 15;      //到数据表查看对应字段的意思
+    string putCaseNumber = 1;                        //立案信息案号
+    string putDate = 2;                             //立案信息立案日期
+    string putPublicProsecutor = 3;                 //立案日期公诉人/原告
+    string putDefendant = 4;                        //立案日期被告人/被告
+    string putCaseCause = 5;                        //立案信息案由
+    string putOpenDate = 6;                         //立案信息开庭时间
+    string putFinishDate = 7;                       //立案信息结束时间
+    string putUndertakeDepartment = 8;              //立案信息承办部门
+    string putCourt = 9;                            //立案信息法院
+    string putUndertakeJudge = 10;                  //立案信息承办法官
+    string putJudgeAssistant = 11;                  //立案信息法官助理
+    string putCaseType = 12;                        //立案信息案件类型
+    string putCaseState = 13;                       //立案信息案件状态
+    string putThirdParty = 14;                      //立案信息第三人
+    int32 putEnId = 15;                             //关联公司信息表id
 }
 
 message CompanyAdminPerChinaFinRest{
-    string adminName = 1;      //到数据表查看对应字段的意思
-    string adminPermissionOffice = 2;      //到数据表查看对应字段的意思
-    string adminDecisionNum = 3;      //到数据表查看对应字段的意思
-    string adminDecisionDate = 4;      //到数据表查看对应字段的意思
-    string adminState = 5;      //到数据表查看对应字段的意思
-    string adminContent = 6;      //到数据表查看对应字段的意思
-    string adminExpirationDate = 7;      //到数据表查看对应字段的意思
-    string adminType = 8;      //到数据表查看对应字段的意思
-    string adminTerritory = 9;      //到数据表查看对应字段的意思
-    int32 adminEnId = 10;      //到数据表查看对应字段的意思
+    string adminName = 1;                           //行政许可【信用中国】项目名称
+    string adminPermissionOffice = 2;               //行政许可【信用中国】许可机关
+    string adminDecisionNum = 3;                    //行政许可【信用中国】决定文书号
+    string adminDecisionDate = 4;                   //行政许可【信用中国】决定日期
+    string adminState = 5;                          //行政许可【信用中国】许可状态
+    string adminContent = 6;                        //行政许可【信用中国】许可内容
+    string adminExpirationDate = 7;                 //行政许可【信用中国】截止日期
+    string adminType = 8;                           //行政许可【信用中国】审批类别
+    string adminTerritory = 9;                      //行政许可【信用中国】地域
+    int32 adminEnId = 10;                           //到数据表查看对应字段的意思
 }
 
 
 message CompanyManageRiskFinRest{
-    string manageAbnormalOut = 1;      //到数据表查看对应字段的意思
-    string manageAbnormalIn = 2;      //到数据表查看对应字段的意思
-    string severityBreakTheLaw = 3;      //到数据表查看对应字段的意思
-    string equityPledge = 4;      //到数据表查看对应字段的意思
-    string pledgeOfStockRight = 5;      //到数据表查看对应字段的意思
-    string administrativePenaltyIndustrial = 6;      //到数据表查看对应字段的意思
-    string administrativePenaltyTax = 7;      //到数据表查看对应字段的意思
-    string administrativePenaltyCredit = 8;      //到数据表查看对应字段的意思
-    string environmentalPenalties = 9;      //到数据表查看对应字段的意思
-    string theTaxIllegal = 10;      //到数据表查看对应字段的意思
-    string chattelMortgage = 11;      //到数据表查看对应字段的意思
-    string clearingInfo = 12;      //到数据表查看对应字段的意思
-    string judicialSale = 13;      //到数据表查看对应字段的意思
-    string landMortgage = 14;      //到数据表查看对应字段的意思
-    string simpleCancellation = 15;      //到数据表查看对应字段的意思
-    string serviceByPublication = 16;      //到数据表查看对应字段的意思
-    int32 manageRiskEnId = 17;      //到数据表查看对应字段的意思
+    string manageAbnormalOut = 1;                       //经营异常[移出异常]
+    string manageAbnormalIn = 2;                        //经营异常【列入异常】
+    string severityBreakTheLaw = 3;                     //严重违法
+    string equityPledge = 4;                            //股权出质
+    string pledgeOfStockRight = 5;                      //股权质押
+    string administrativePenaltyIndustrial = 6;         //行政处罚[工商局]
+    string administrativePenaltyTax = 7;                //行政处罚【税务局】
+    string administrativePenaltyCredit = 8;             //行政处罚【信用中国】
+    string environmentalPenalties = 9;                  //环保处罚
+    string theTaxIllegal = 10;                          //税收违法
+    string chattelMortgage = 11;                        //动产抵押
+    string clearingInfo = 12;                           //清算信息
+    string judicialSale = 13;                           //司法拍卖
+    string landMortgage = 14;                           //土地抵押
+    string simpleCancellation = 15;                     //简易注销
+    string serviceByPublication = 16;                   //公示催告
+    int32 manageRiskEnId = 17;                          //欠税公告
 }
 
 message CompanyCourtNoticeRest{
-    string courtAppellor = 1;      //到数据表查看对应字段的意思
-    string courtByAppellor = 2;      //到数据表查看对应字段的意思
-    string courtNoticeType = 3;      //到数据表查看对应字段的意思
-    string courtNoticePerson = 4;      //到数据表查看对应字段的意思
-    string courtPublishDate = 5;      //到数据表查看对应字段的意思
-    string courtPublishLayout = 6;      //到数据表查看对应字段的意思
-    string courtUploadingDate = 7;      //到数据表查看对应字段的意思
+    string courtAppellor = 1;                           //法院公告上诉人
+    string courtByAppellor = 2;                         //法院公告被上诉人
+    string courtNoticeType = 3;                         //法院公告公告类型
+    string courtNoticePerson = 4;                       //法院公告公告人
+    string courtPublishDate = 5;                        //法院公告刊登日期
+    string courtPublishLayout = 6;                      //法院公告刊登版面
+    string courtUploadingDate = 7;                      //法院公告上传日期
     string courtContent = 8;                            //法院公告内容
     int32 courtEnId = 9;                                //关联公司信息表id
 }
 
 
 message CompanyIndustryAndCommerceInfoRest{
-    string legalRepresentative = 1;      //到数据表查看对应字段的意思
-    string registeredCapital = 2;      //到数据表查看对应字段的意思
-    string contributedCapital = 3;      //到数据表查看对应字段的意思
-    string managementForms = 4;      //到数据表查看对应字段的意思
-    string setUpDate = 5;      //到数据表查看对应字段的意思
-    string unifiedSocialCreditCode = 6;      //到数据表查看对应字段的意思
-    string identifyNumber = 7;      //到数据表查看对应字段的意思
-    string registrationNumber = 8;      //到数据表查看对应字段的意思
-    string institutionalFrameworkCode = 9;      //到数据表查看对应字段的意思
-    string enType = 10;      //到数据表查看对应字段的意思
-    string industryInvolved = 11;      //到数据表查看对应字段的意思
-    string dateOfApproval = 12;      //到数据表查看对应字段的意思
-    string registrationAuthority = 13;      //到数据表查看对应字段的意思
-    string areaName = 14;      //到数据表查看对应字段的意思
-    string englishName = 15;      //到数据表查看对应字段的意思
-    string formerName = 16;      //到数据表查看对应字段的意思
-    string insuredNumberOfPeople = 17;      //到数据表查看对应字段的意思
-    string staffSize = 18;      //到数据表查看对应字段的意思
-    string operatingPeriod = 19;      //到数据表查看对应字段的意思
-    string enAddress = 20;      //到数据表查看对应字段的意思
-    string runScope = 21;      //到数据表查看对应字段的意思
-    string sponsor = 22;        //
-    string fundingSource = 23;        //
+    string legalRepresentative = 1;             //法定代表人
+    string registeredCapital = 2;               //注册资本
+    string contributedCapital = 3;              //实缴资本
+    string managementForms = 4;                 //经营状态
+    string setUpDate = 5;                       //成立日期
+    string unifiedSocialCreditCode = 6;         //统一社会信用代码
+    string identifyNumber = 7;                  //纳税人识别号
+    string registrationNumber = 8;              //注册号
+    string institutionalFrameworkCode = 9;      //组织机构代码
+    string enType = 10;                         //企业类型
+    string industryInvolved = 11;               //所属行业
+    string dateOfApproval = 12;                 //核准日期
+    string registrationAuthority = 13;          //登记机关
+    string areaName = 14;                       //所属地区
+    string englishName = 15;                    //英文名
+    string formerName = 16;                     //曾用名
+    string insuredNumberOfPeople = 17;          //参保人数
+    string staffSize = 18;                      //人员规模
+    string operatingPeriod = 19;                //营业期限
+    string enAddress = 20;                      //企业地址
+    string runScope = 21;                       //经营范围
+    string sponsor = 22;                        //举办单位
+    string fundingSource = 23;                  //经费来源
 }
 
 //erp数据源返回数据信息
