@@ -36,7 +36,7 @@ u智融项目的sdk包
 
 #### B、单JAR包方式
 
-- “版本号地址”里，后缀以“assembly.jar”为结尾的Jar包，直接下载即可
+- “版本号地址”里，后缀以“jar-with-dependencies.jar”为结尾的Jar包，直接下载即可
 
 ## 版本号地址
 
