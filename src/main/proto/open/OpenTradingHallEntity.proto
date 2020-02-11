@@ -330,7 +330,7 @@ message ErpTopFiveCustomersInfo {
     //合作年限（年）
     double cooperationYear=5;
 }
-//盈利能力指标、资产质量指标、债务风险指标、经营增长指标
+//盈利能力指标、资产质量指标、债务风险指标、经营增长指标、年份
 message ErpCalculationOfEachIndex {
     //净资产周转率
     double turnoverRateOfNetAssets = 1;
@@ -356,6 +356,8 @@ message ErpCalculationOfEachIndex {
     double operatingProfitGrowthRate = 11;
     //总资产增长率（%）
     double growthRateOfTotalAssets = 12;
+    //年份
+    int32 year = 13;
 }
 
 message TransactionsRest{
