@@ -53,4 +53,17 @@ public class FinancingSideSdkTest {
 		AgreeDiscussResp resp = financingSideSdk.agreeDiscuss(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}
+
+	/**
+	 * [确认收款]
+	 * @author: linjh
+	 * @date: 2020/2/24
+	 **/
+	@Test
+	public void saveConfirmReceipt() throws Exception {
+		SaveConfirmReceiptReq.Builder req = SaveConfirmReceiptReq.newBuilder();
+		req.setCapitalSideLoanCode("86200217192599904700").setEnuu(10042875);
+		SaveConfirmReceiptResp resp = financingSideSdk.saveConfirmReceipt(req);
+		System.out.println(ProtoBufUtil.toJSON(resp));
+	}
 }

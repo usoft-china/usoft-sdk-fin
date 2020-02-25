@@ -15,6 +15,8 @@ service IOpenFinancingSideService {
     rpc getFinanceDemandDetail (GetFinanceDemandDetailReq) returns (GetFinanceDemandDetailResp);
     // 同意洽谈-restAPI /api/open/factoring/agreeDiscuss, methos:post, type:kv
     rpc agreeDiscuss (AgreeDiscussReq) returns (AgreeDiscussResp);
+    //融资方-确认收款-restAPI /api/open/factoring/saveConfirmReceipt, method:post, type:kv
+    rpc saveConfirmReceipt(SaveConfirmReceiptReq) returns (SaveConfirmReceiptResp);
 }
 
 //查看发布的需求 请求信息
@@ -55,5 +57,19 @@ message AgreeDiscussReq {
 }
 // 同意洽谈 响应信息
 message AgreeDiscussResp {
+    RespHeader respHeader = 1; // 响应头信息
+}
+
+//确认收款 请求参数
+message SaveConfirmReceiptReq{
+    RespHeader reqHeader = 1; //请求头信息
+    string signature = 2; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 3; //秘密身份ID
+    string capitalSideLoanCode = 4;   //放款信息编号
+    int32 enuu = 5; // 融资方企业uu
+}
+
+//确认收款 响应参数
+message SaveConfirmReceiptResp{
     RespHeader respHeader = 1; // 响应头信息
 }

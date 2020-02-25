@@ -76,4 +76,17 @@ public class FinancingSideSdk extends BaseSdk {
 			AgreeDiscussResp.Builder resp = ProtoBufUtil.toProtoBuf(AgreeDiscussResp.newBuilder(), respJson);
 		return resp.build();
 	}
+
+	/**
+	 * [确认收款]
+	 * @author: linjh
+	 * @date: 2020/2/24
+	 **/
+	public SaveConfirmReceiptResp saveConfirmReceipt(SaveConfirmReceiptReq.Builder req) throws Exception {
+		String url = baseUrl + "/api/open/factoring/saveConfirmReceipt";
+		String paramJson = genSignToJson(req);
+		String respJson = HttpUtil.doPost(url, paramJson, timeout);
+		SaveConfirmReceiptResp.Builder resp = ProtoBufUtil.toProtoBuf(SaveConfirmReceiptResp.newBuilder(), respJson);
+		return resp.build();
+	}
 }
