@@ -164,6 +164,7 @@ message CompanyManageRiskFinRest{
     string simpleCancellation = 15;                     //简易注销
     string serviceByPublication = 16;                   //公示催告
     int32 manageRiskEnId = 17;                          //欠税公告
+    string owingTaxesNotice = 18;                       //欠税公告
 }
 
 message CompanyCourtNoticeRest{

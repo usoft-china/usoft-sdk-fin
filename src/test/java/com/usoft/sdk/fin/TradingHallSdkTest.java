@@ -64,7 +64,7 @@ public class TradingHallSdkTest {
     @Test
     public void getEnterpriseExtensionInfo() throws Exception {
         GetEnterpriseExtensionInfoReq.Builder req = GetEnterpriseExtensionInfoReq.newBuilder();
-        req.setEnuu(10000666);
+        req.setEnuu(10030538);
         GetEnterpriseExtensionInfoResp resp = tradingHallSdk.getEnterpriseExtensionInfo(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
