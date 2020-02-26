@@ -78,7 +78,7 @@ public class FinancingSideSdk extends BaseSdk {
 	}
 
 	/**
-	 * [确认收款]
+	 * [融资方确认收款]
 	 * @author: linjh
 	 * @date: 2020/2/24
 	 **/
