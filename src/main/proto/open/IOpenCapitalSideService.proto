@@ -34,7 +34,7 @@ service IOpenCapitalSideService {
     // 获取收藏企业列表-restAPI /api/open/factoring/cs/getCollectionList, method:get, type:kv
     rpc getCollectionList (GetCollectionListReq) returns (GetCollectionListResp) {}
 }
-
+/**
 // 查看融资记录列表 请求
 message GetFinanceDemandsReq {
     string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
@@ -54,6 +54,24 @@ message GetFinanceDemandsReq {
 message GetFinanceDemandResp {
     RespHeader respHeader = 1;
     repeated FinanceDemandDetailAcceptAndDetail FinanceDemandDetailAcceptAndDetail = 2;
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+**/
+
+// 查看融资记录列表 请求
+message GetFinanceDemandsReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 pageSize = 3; // 每页大小
+    int32 pageNumber = 4; // 页码
+    int32 enuu = 5; // enuu
+    int32 isoffer = 6;      // 报价筛选（选填） 1101（已报价）1102（未报价）
+}
+
+// 查看融资记录列表 响应
+message GetFinanceDemandResp {
+    RespHeader respHeader = 1;
+    repeated FinanceDemandExtend financeDemandExtend = 2;
     PagingInfo pagingInfo = 3; // 分页信息
 }
 

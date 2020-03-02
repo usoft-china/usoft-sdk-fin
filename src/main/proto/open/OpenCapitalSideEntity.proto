@@ -246,3 +246,10 @@ message CollectionRestInfo{
     string grade = 3; //企业评级
     string collectionTime = 5; //收藏时间
 }
+
+//融资需求扩展信息
+message FinanceDemandExtend{
+    AcceptFinanceDemand financeDemand = 1;
+    AcceptOffer acceptOffer = 2;
+    repeated FinanceDemandDetailAcceptAndDetail financeDemandDetailAcceptAndDetail = 3;
+}
