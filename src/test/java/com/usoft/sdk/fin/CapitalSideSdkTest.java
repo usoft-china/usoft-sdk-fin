@@ -22,11 +22,11 @@ public class CapitalSideSdkTest {
 	public void getFinanceSideDemands() throws Exception {
 		GetFinanceDemandsReq.Builder req = GetFinanceDemandsReq.newBuilder();
 		req.setEnuu(10042875);
-		req.setCsEnuu(10042875);
+		//req.setCsEnuu(10042875);
 		req.setPageNumber(1);
 		req.setPageSize(10);
-		req.setStatus(1001);
-		//req.setIsoffer(1101);
+        req.setIsoffer(1101);
+        //req.setStatus(1001);
 		//req.setStartAcceptDate();
 		//req.setEndAcceptDate();
 		//req.setOrderBy();
