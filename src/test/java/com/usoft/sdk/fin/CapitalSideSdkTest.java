@@ -16,7 +16,7 @@ public class CapitalSideSdkTest {
 	/**
 	 * 测试地址
 	 */
-	private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.uuzcc.cn", "10042875", "c49f7be6a861461ab951e55030055a5c");
+	private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.uuzcc.cn", "10050877", "b78d577449b64f56a8a6cf1feeb3fbf5");
 
 	@Test
 	public void getFinanceSideDemands() throws Exception {
@@ -60,7 +60,7 @@ public class CapitalSideSdkTest {
 		req.setCsEnuu(10042875);
 		req.setPageNumber(1);
 		req.setPageSize(10);
-		req.setUpdateTime(1578879998000L);
+//		req.setUpdateTime(1578879998000L);
 		GetOfferQuotaInfoListResp resp = capitalSideSdk.getOfferQuotaInfoList(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}

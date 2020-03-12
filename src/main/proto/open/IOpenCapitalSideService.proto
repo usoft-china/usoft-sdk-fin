@@ -109,18 +109,19 @@ message BatchOfferOrderResp{
 
 //提交企业申请额度信息
 message SaveOfferQuotaInfoReq{
-    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
-    string secretId = 2; //秘密身份ID
-    int32 csEnuu = 3;         //资金方enuu
-    string csEnName = 4;      //资金方企业名称
-    int32 fsEnuu = 5;         //融资方enuu
-    string fsEnName = 6;      //资金方企业名称
-    double quotaAmount = 7;     //当前额度
-    int32 credDays = 8;           //授信期限(月)
-    double financeRate = 9;       //融资比例
+    string signature = 1;          //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2;           //秘密身份ID
+    int32 csEnuu = 3;              //资金方enuu
+    string csEnName = 4;           //资金方企业名称
+    int32 fsEnuu = 5;              //融资方enuu
+    string fsEnName = 6;           //资金方企业名称
+    double quotaAmount = 7;        //当前额度
+    int32 credDays = 8;            //授信期限(月)
+    double financeRate = 9;        //融资比例
     double offerRate = 10;         //年化利率
     string repayment = 11;         //还款方式
-    int32 applyUu = 12;         //申请人uu
+    int32 applyUu = 12;            //申请人uu
+    string previousRecord = 13;    //调整前数据
 }
 //提交企业申请额度信息
 message SaveOfferQuotaInfoResp{
@@ -173,7 +174,8 @@ message GetOfferQuotaInfoListReq{
 //获取企业申请额度信息列表 响应信息
 message GetOfferQuotaInfoListResp{
     RespHeader respHeader = 1; // 响应头信息
-    repeated OfferQuotaInfoRest offerQuoteInfo = 2;          //报价额度实体
+    repeated OfferQuotaAndOfferQuotaInfoRest offerQuotaAndOfferQuotaInfo = 2;          //额度信息
+//    repeated OfferQuotaInfoRest offerQuoteInfo = 2;          //报价额度实体
     PagingInfo pagingInfo = 3; // 分页信息
 }
 
