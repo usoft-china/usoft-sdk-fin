@@ -7,6 +7,8 @@ import com.usoft.sdk.fin.client.CapitalSideSdk;
 import com.usoft.sdk.fin.utils.ProtoBufUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 /**
  * @author: linjh
  * @date: 2019-12-23 16:37
@@ -187,5 +189,16 @@ public class CapitalSideSdkTest {
         req.setUpdateTime(1578879998000L);
         GetCollectionListResp resp = capitalSideSdk.getCollectionList(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
+    }
+
+    /**
+     * 传入请求参数，返回api签名串
+     * @throws Exception
+     */
+    @Test
+    public void getSignatureValue() throws Exception {
+        String paramStr = "secretId=10046945&secretId=10046945&uu=1000014617&redirectUrl=https://fin.yitoa-fintech.com/";
+        String signature = capitalSideSdk.getSignatureValue(paramStr);
+        System.out.println(signature);
     }
 }

@@ -8,6 +8,7 @@ import com.usoft.security.utils.OpenApiSignUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -61,6 +62,16 @@ public abstract class BaseSdk {
 		this.secretId = secretId;
 		this.secretKey = secretKey;
 		this.timeout = timeout;
+	}
+
+	/**
+	 * 生成Api验证加密串
+	 */
+	public String getSignatureValue(String paramStr) throws Exception {
+		String signatureValue = OpenApiSignUtil.sign(paramStr, secretKey);
+		signatureValue = URLEncoder.encode(signatureValue, "UTF-8");
+		//返回签名
+		return signatureValue;
 	}
 
 	/**
