@@ -67,9 +67,12 @@ public abstract class BaseSdk {
 	/**
 	 * 生成Api验证加密串
 	 */
-	public String getSignatureValue(String paramStr) throws Exception {
+	public String getSignatureValue(Message.Builder req) throws Exception {
+		Map<String, String> paramMap = ProtoBufUtil.toMap(req);
+		String paramStr = HttpUtil.getParamStr(paramMap);
 		String signatureValue = OpenApiSignUtil.sign(paramStr, secretKey);
 		signatureValue = URLEncoder.encode(signatureValue, "UTF-8");
+
 		//返回签名
 		return signatureValue;
 	}

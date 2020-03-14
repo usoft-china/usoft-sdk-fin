@@ -51,3 +51,10 @@ message EntInfo {
     string mainBusiness = 6; //主营业务
     string enType = 7; //公司类型
 }
+
+//登陆加签实体
+message SignatureInfo {
+    string secretId =1;
+    int32 uu =2;
+    string redirectUrl =3;
+}

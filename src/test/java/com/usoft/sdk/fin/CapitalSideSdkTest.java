@@ -3,6 +3,7 @@ package com.usoft.sdk.fin;
 import com.usoft.fin.external.open.api.entity.OpenCapitalSideLoanOther;
 import com.usoft.fin.external.open.api.entity.OpenCapitalSideRepaymentPlanOther;
 import com.usoft.fin.external.open.api.protobuf.*;
+import com.usoft.fin.rest.api.entity.SignatureInfo;
 import com.usoft.sdk.fin.client.CapitalSideSdk;
 import com.usoft.sdk.fin.utils.ProtoBufUtil;
 import org.junit.jupiter.api.Test;
@@ -18,9 +19,10 @@ public class CapitalSideSdkTest {
 	/**
 	 * 测试地址
 	 */
-	private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.uuzcc.cn", "10050877", "b78d577449b64f56a8a6cf1feeb3fbf5");
+	//private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.uuzcc.cn", "10050877", "b78d577449b64f56a8a6cf1feeb3fbf5");
+    private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.usoftchina.com", "10046945", "600d3f07955ba67fe050007f01002db2");
 
-	@Test
+    @Test
 	public void getFinanceSideDemands() throws Exception {
 		GetFinanceDemandsReq.Builder req = GetFinanceDemandsReq.newBuilder();
 		req.setEnuu(10042875);
@@ -197,8 +199,10 @@ public class CapitalSideSdkTest {
      */
     @Test
     public void getSignatureValue() throws Exception {
-        String paramStr = "secretId=10046945&secretId=10046945&uu=1000014617&redirectUrl=https://fin.yitoa-fintech.com/";
-        String signature = capitalSideSdk.getSignatureValue(paramStr);
+        SignatureInfo.Builder signatureInfo = SignatureInfo.newBuilder();
+        signatureInfo.setSecretId("10046945").setUu(1000014617).setRedirectUrl("https://fin.yitoa-fintech.com/");
+        String signature = capitalSideSdk.getSignatureValue(signatureInfo);
+        System.out.println("------返回结果--------");
         System.out.println(signature);
     }
 }
