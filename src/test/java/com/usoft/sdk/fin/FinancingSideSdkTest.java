@@ -25,7 +25,10 @@ public class FinancingSideSdkTest {
 	@Test
 	public void getFinanceSideDemands() throws Exception {
 		GetFinanceSideDemandsReq.Builder req = GetFinanceSideDemandsReq.newBuilder();
-		req.setEnuu(10005285).setPageNumber(1).setPageSize(10);
+		req.setEnuu(10005285).setPageNumber(1).setPageSize(10)
+				.setCode("737996").setStatus(1002)
+				.setFsDemandAmountStart(5000000).setFsDemandAmountEnd(0)
+				.setPubTimeStart("2019-12-01").setPubTimeEnd("2020-03-15") ;
 		GetFinanceSideDemandsResp resp = financingSideSdk.getFinanceSideDemands(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}

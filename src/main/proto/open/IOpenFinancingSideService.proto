@@ -26,6 +26,12 @@ message GetFinanceSideDemandsReq {
     int32 pageSize = 3; // 每页大小
     int32 pageNumber = 4;
     int32 enuu = 5; //融资方企业uu
+    string code = 6; //融资编号
+    int32 status = 7; //状态
+    string pubTimeStart = 8; //发布时间开始
+    string pubTimeEnd = 9; //发布时间结束
+    int32 fsDemandAmountStart = 10; //需求金额开始
+    int32 fsDemandAmountEnd = 11; //需求金额开始
 }
 //查看发布的需求 响应信息
 message GetFinanceSideDemandsResp {
