@@ -205,4 +205,17 @@ public class CapitalSideSdkTest {
         System.out.println("------返回结果--------");
         System.out.println(signature);
     }
+
+    @Test
+    public void getRepaymentList() throws Exception {
+        GetRepaymentReq.Builder req = GetRepaymentReq.newBuilder();
+        req.setPageSize(10);
+        req.setPageNumber(1);
+        req.setCsEnuu(10050877);
+        req.setStatus(2);
+        req.setLoanAmountStart(0);
+        req.setLoanAmountEnd(1000000);
+        GetRepaymentResp resp = capitalSideSdk.getRepaymentList(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
 }

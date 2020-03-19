@@ -33,6 +33,8 @@ service IOpenCapitalSideService {
     rpc updateRepaymentPlanStatus(UpdateRepaymentPlanStatusReq) returns (UpdateRepaymentPlanStatusResp);
     // 获取收藏企业列表-restAPI /api/open/factoring/cs/getCollectionList, method:get, type:kv
     rpc getCollectionList (GetCollectionListReq) returns (GetCollectionListResp) {}
+    //获取还款记录列表-restAPI /api/open/factoring/cs/getRepaymentList, method:get, type:kv
+    rpc getRepaymentList(GetRepaymentReq) returns (GetRepaymentResp);
 }
 /**
 // 查看融资记录列表 请求
@@ -147,11 +149,19 @@ message UpdateOfferQuotaInfoResp{
 // 查看报价记录列表
 message GetFinanceOfferListReq {
     string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
-    string secretId = 2; //秘密身份ID
-    int32 pageSize = 3; // 每页大小
-    int32 pageNumber = 4; // 页码
-    int32 enuu = 5; //资金方enuu
-    int64 updateTime = 6;   //申请时间 （时间戳） （非必填）
+    string secretId = 2;           //秘密身份ID
+    int32 pageSize = 3;            // 每页大小
+    int32 pageNumber = 4;          // 页码
+    int32 enuu = 5;                //资金方enuu
+    int64 updateTime = 6;          //申请时间 （时间戳） （非必填）
+    string financeCode = 7;        //融资编号
+    string financeSideName = 8;    //融资方企业名称
+    string offerTimeStart = 9;     //报价时间开始
+    string offerTimeEnd = 10;      //报价时间结束
+    double offerAmountStart = 11;  //报价金额开始
+    double offerAmountEnd = 12;    //报价金额结束
+    int32 status = 13;             //状态 1001-未报价, 1002-待放款，1003-已失效，1004-已放款，1030-已报价，1040-待还款，1050-已结清
+    int32 operation = 14;          //操作
 }
 // 查看报价记录列表
 message GetFinanceOfferListResp {
@@ -163,13 +173,18 @@ message GetFinanceOfferListResp {
 //获取企业申请额度信息列表 请求信息
 message GetOfferQuotaInfoListReq{
     string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
-    string secretId = 2; //秘密身份ID
-    int32 csEnuu = 3;   //资金方enuu
-    int32 pageSize = 4; // 每页大小
-    int32 pageNumber = 5; // 页码
-    int32 fsEnuu = 6;   //融资方enuu
-    int32 status = 7;   //申请额度状态
-    int64 updateTime = 8;   //申请时间 （时间戳） （非必填）
+    string secretId = 2;          //秘密身份ID
+    int32 csEnuu = 3;             //资金方enuu
+    int32 pageSize = 4;           // 每页大小
+    int32 pageNumber = 5;         // 页码
+    int32 fsEnuu = 6;             //融资方enuu
+    int32 status = 7;             //申请额度状态
+    int64 updateTime = 8;         //申请时间 （时间戳） （非必填）
+    double quotaAmountStart = 9;  //当前额度开始
+    double quotaAmountEnd = 10;   //当前额度结束
+    string checkerTimeStart = 11; //审核日期开始
+    string checkerTimeEnd = 12;   //审核日期开始
+    string fsEnName = 13;         //融资方企业名称
 }
 //获取企业申请额度信息列表 响应信息
 message GetOfferQuotaInfoListResp{
@@ -210,18 +225,25 @@ message AddCapitalSideLoanResp{
 //获取放款记录列表 请求参数
 message GetCapitalSideLoanReq{
     string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
-    string secretId = 2; //秘密身份ID
-    int32 pageSize = 3; // 每页大小
-    int32 pageNumber = 4; // 页码
-    int32 fsEnuu = 5;   //融资方enuu（二选一，非必填）
-    int32 csEnuu = 6;   //资金方enuu（二选一，非必填）
-    int64 updateTime = 7;   //申请时间 （时间戳） （非必填）
+    string secretId = 2;           //秘密身份ID
+    int32 pageSize = 3;            // 每页大小
+    int32 pageNumber = 4;          // 页码
+    int32 fsEnuu = 5;              //融资方enuu（二选一，非必填）
+    int32 csEnuu = 6;              //资金方enuu（二选一，非必填）
+    int64 updateTime = 7;          //申请时间 （时间戳） （非必填）
+    string financeDemandCode = 8;  //融资编号（非必填）
+    string fsEnName = 9;           //融资方企业名称（非必填）
+    string offerTimeStart= 10;     //报价时间开始（非必填）
+    string offerTimeEnd= 11;       //报价时间结束（非必填）
+    double loanAmountStart = 12;   //放款金额开始（非必填）
+    double loanAmountEnd = 13;     //放款金额结束（非必填）
+    int32 status = 14;             //状态（非必填）
 }
 
 //获取放款记录列表 响应参数
 message GetCapitalSideLoanResp{
     RespHeader respHeader = 1; // 响应头信息
-    repeated CapitalSideLoan capitalSideLoan = 2;          //报价额度实体
+    repeated FinanceAndCapitalSideLoanList financeAndCapitalSideLoanList = 2; //融资和放款信息查询实体
     PagingInfo pagingInfo = 3; // 分页信息
 }
 
@@ -240,15 +262,46 @@ message UpdateRepaymentPlanStatusResp{
 // 收藏企业实体()
 message GetCollectionListReq {
     string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
-    string secretId = 2; //秘密身份ID
-    int32 pageSize = 3; // 每页大小
-    int32 pageNumber = 4; // 页码
+    string secretId = 2;    //秘密身份ID
+    int32 pageSize = 3;     // 每页大小
+    int32 pageNumber = 4;   // 页码
     int64 updateTime = 5;   //申请时间 （时间戳）（非必填）
+    string grade = 6;       //企业评级（非必填）
+    string enName = 7;      // 企业名称 用于搜索
 }
 
 // 收藏企业实体()
 message GetCollectionListResp {
     RespHeader respHeader = 1; // 响应头信息
     repeated CollectionRestInfo collectionInfo = 2;
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+
+//获取还款记录列表 请求参数
+message GetRepaymentReq{
+    RespHeader reqHeader = 1;     //请求头信息
+    string signature = 2;            //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 3;             //秘密身份ID
+    int32 pageSize = 4;              // 每页大小
+    int32 pageNumber = 5;            // 页码
+    int32 fsEnuu = 6;                //融资方enuu（二选一，非必填）
+    int32 csEnuu = 7;                //资金方enuu（二选一，非必填）
+    string capitalSideLoanCode = 8;  //放款编号（非必填）
+    string fsEnName = 9;             //融资方企业名称（非必填）
+    string loanDateStart= 10;        //放款日期开始（非必填）
+    string loanDateEnd= 11;          //放款日期结束（非必填）
+    double loanAmountStart = 12;     //放款金额开始（非必填）
+    double loanAmountEnd = 13;       //放款金额结束（非必填）
+    string repaymentDataStart = 14;  //还款日期开始（非必填）
+    string repaymentDataEnd = 15;    //还款日期结束（非必填）
+    int32 status = 16;               //状态（必填） 2-全部，1040-待还款，1050-已结清
+    int32 settle = 17;               //是否结清（非必填）2-否，1-是
+    int64 updateTime = 18;           //申请时间 （时间戳） （非必填）
+}
+
+//获取还款记录列表 响应参数
+message GetRepaymentResp{
+    RespHeader respHeader = 1; // 响应头信息
+    repeated CapitalSideLoan capitalSideLoan = 2;          //放款信息查询实体
     PagingInfo pagingInfo = 3; // 分页信息
 }

@@ -273,3 +273,9 @@ message OfferQuotaRest{
     string repayment=8;         //还款方式
     string endTime=9;           //额度到期时间
 }
+
+message FinanceAndCapitalSideLoanList {
+    AcceptFinanceDemand acceptFinanceDemand = 1;  //融资需求表
+    CapitalSideLoan capitalSideLoan = 2;          //放款信息查询实体
+    AcceptOffer acceptOffer = 3;                  //报价实体
+}

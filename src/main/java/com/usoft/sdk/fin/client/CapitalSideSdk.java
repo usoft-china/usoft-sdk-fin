@@ -145,7 +145,7 @@ public class CapitalSideSdk extends BaseSdk {
     }
 
     /**
-     * [获取放款记录列表]
+     * [更新执行还款记录状态]
      * @author: linjh
      * @date: 2020/1/7
      **/
@@ -167,6 +167,19 @@ public class CapitalSideSdk extends BaseSdk {
         Map<String, String> paramJson = genSignToMap(req);
         String respJson = HttpUtil.doGet(url, paramJson, timeout);
         GetCollectionListResp.Builder resp = ProtoBufUtil.toProtoBuf(GetCollectionListResp.newBuilder(), respJson);
+        return resp.build();
+    }
+
+    /**
+     * [获取还款记录列表]
+     * @author: linjh
+     * @date: 2020/3/19
+     **/
+    public GetRepaymentResp getRepaymentList(GetRepaymentReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/factoring/cs/getRepaymentList";
+        Map<String, String> params = genSignToMap(req);
+        String respJson = HttpUtil.doGet(url, params, timeout);
+        GetRepaymentResp.Builder resp = ProtoBufUtil.toProtoBuf(GetRepaymentResp.newBuilder(), respJson);
         return resp.build();
     }
 }
