@@ -162,6 +162,7 @@ message GetFinanceOfferListReq {
     double offerAmountEnd = 12;    //报价金额结束
     int32 status = 13;             //状态 1001-未报价, 1002-待放款，1003-已失效，1004-已放款，1030-已报价，1040-待还款，1050-已结清
     int32 operation = 14;          //操作
+    int32 offer = 15;              //1001--已报价
 }
 // 查看报价记录列表
 message GetFinanceOfferListResp {

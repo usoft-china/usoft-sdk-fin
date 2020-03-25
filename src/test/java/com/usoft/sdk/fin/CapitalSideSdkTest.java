@@ -42,10 +42,10 @@ public class CapitalSideSdkTest {
 	@Test
 	public void getFinanceOfferList() throws Exception {
 		GetFinanceOfferListReq.Builder req = GetFinanceOfferListReq.newBuilder();
-		req.setEnuu(10042875);
+		req.setEnuu(10050877);
 		req.setPageNumber(1);
 		req.setPageSize(10);
-		req.setUpdateTime(1577232000000L);
+//		req.setUpdateTime(1577232000000L);
 		GetFinanceOfferListResp resp = capitalSideSdk.getFinanceOfferList(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}
@@ -61,7 +61,7 @@ public class CapitalSideSdkTest {
 	@Test
 	public void getOfferQuotaInfoList() throws Exception {
 		GetOfferQuotaInfoListReq.Builder req = GetOfferQuotaInfoListReq.newBuilder();
-		req.setCsEnuu(10042875);
+		req.setCsEnuu(10046945);
 		req.setPageNumber(1);
 		req.setPageSize(10);
 //		req.setUpdateTime(1578879998000L);
