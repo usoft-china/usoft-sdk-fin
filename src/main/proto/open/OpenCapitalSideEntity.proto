@@ -49,6 +49,7 @@ message OfferQuotaInfoRest{
     int32 id = 18;               //id
     string code = 19;            //code
     string previousRecord = 20;  //调整前的数据
+    string guarantorJson = 21;   //担保人信息
 }
 
 //报价表
@@ -278,4 +279,10 @@ message FinanceAndCapitalSideLoanList {
     AcceptFinanceDemand acceptFinanceDemand = 1;  //融资需求表
     CapitalSideLoan capitalSideLoan = 2;          //放款信息查询实体
     AcceptOffer acceptOffer = 3;                  //报价实体
+}
+
+//担保人信息
+message GuarantorJson{
+    string name = 1;    //担保人姓名
+    string mobile = 2;    //担保电话
 }

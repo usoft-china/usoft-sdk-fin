@@ -19,8 +19,8 @@ public class CapitalSideSdkTest {
 	/**
 	 * 测试地址
 	 */
-	//private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.uuzcc.cn", "10050877", "b78d577449b64f56a8a6cf1feeb3fbf5");
-    private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.usoftchina.com", "10046945", "600d3f07955ba67fe050007f01002db2");
+	private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.uuzcc.cn", "10050877", "b78d577449b64f56a8a6cf1feeb3fbf5");
+//    private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.usoftchina.com", "10046945", "600d3f07955ba67fe050007f01002db2");
 
     @Test
 	public void getFinanceSideDemands() throws Exception {
@@ -72,7 +72,7 @@ public class CapitalSideSdkTest {
 	@Test
 	public void getOfferQuotaInfoByCode() throws Exception {
 		GetOfferQuotaInfoByCodeReq.Builder req = GetOfferQuotaInfoByCodeReq.newBuilder();
-		req.setCode("85190711282916126800");
+		req.setCode("85200428806347821428");
 		GetOfferQuotaInfoByCodeResp resp = capitalSideSdk.getOfferQuotaInfoByCode(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}

@@ -124,6 +124,8 @@ message SaveOfferQuotaInfoReq{
     string repayment = 11;         //还款方式
     int32 applyUu = 12;            //申请人uu
     string previousRecord = 13;    //调整前数据
+    string acceptOfferQuotaCode = 14;               //额度编号(选填)
+    repeated GuarantorJson guarantorJson = 15;      //担保人list
 }
 //提交企业申请额度信息
 message SaveOfferQuotaInfoResp{
