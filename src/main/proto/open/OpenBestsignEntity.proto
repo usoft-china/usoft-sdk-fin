@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "BaseRestEntity.proto";
+package fin.open;
+option java_multiple_files = true;
+option java_package = "com.usoft.fin.external.open.factoring.api.entity";
+
+//上上签电子签合同记录表实体
+message Contract {
+    string code = 1;                      //编号
+    string financeDemandCode = 2;         //融资需求编号
+    string acceptOfferCode = 3;           //报价编号
+    int32 fsEnuu = 4;                     //融资方enuu
+    string fsEnName = 5;                  //融资方企业名称
+    int32 fsSignStatus = 6;               //融资方签署状态（1710:已发送，1720:已签，1730:过期）
+    int32 csEnuu = 7;                     //资金方enuu
+    int32 csSignStatus = 8;               //资金方签署状态（1710:已发送，1720:已签，1730:过期）
+    string thirdPartyName = 9;            //第三方姓名
+    string thirdPartyMobile = 10;          //第三方手机
+    int32 thirdPartySignStatus = 11;      //第三方签署状态（1710:已发送，1720:已签，1730:过期）
+    int32 contractType = 12;              //合同类型（1810:额度合同,1820:担保合同，1830:借款合同，1840:转让合同）
+    string fsSignJson = 13;               //融资方签约回调
+    string csaSignJson = 14;              //融资方签约回调
+    string thirdPartySignJson = 15;       //第三方签约回调
+    string guarantorJson = 16;            //（额度合同该字段才有值）担保人信息[{name:''xx'',mobile:''xxx''},{name:''xx'',mobile:''xxx''}]
+    string acceptOfferQuotaInfoCode = 17; //报价额度详情编号
+    string templateId = 18;               //合同id
+    string fsShortOperateUrl = 19;        //融资方签约短链接
+    string thirdShortOperateUrl = 20;        //第三方签约短链接
+    string sendContractJson = 21;         //合同发送成功返回
+    string contractStatus = 22;           //合同状态（1710:签署中，1720:成功，1730:逾期，1740:拒绝）
+    string applyTime = 23;                  //发送时间
+    string fsSignTime = 24;                 //融资方签署时间
+    string csSignTime = 25;                 //资金方签署时间
+    string thirdPartySignTime = 26;           //第三方签署时间
+    string contractLabelsInfo = 27;           //合同信息扩展字段{bankAccountName:''xx'',bankName:''xx'',bankAccount:''xx'',receivablesArrivalDate:''xx''}
+}

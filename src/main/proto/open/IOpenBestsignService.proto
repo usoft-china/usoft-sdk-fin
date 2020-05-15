@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+import "open/OpenBestsignEntity.proto";
+import "BaseRestEntity.proto";
+package fin.open;
+option java_multiple_files = true;
+option java_package = "com.usoft.fin.external.open.factoring.api.protobuf";
+option java_outer_classname = "IOpenBestsignServiceProto";
+
+service IOpenBestsignService {
+    //第三方获取需要签约的合同列表-restAPI /api/open/bestsign/getThreePartyContractList, method:get
+    rpc getThreePartyContractList (GetThreePartyContractListReq) returns (GetThreePartyContractListResp);
+
+    //第三方获取待签约合同数量-restAPI /api/open/bestsign/getThreePartyContractCount, method:get
+    rpc getThreePartyContractCount (GetThreePartyContractCountReq) returns (GetThreePartyContractCountResp);
+
+    //合同管理、签署、查看-restAPI /api/open/bestsign/contractTargetPage, method:get
+    rpc contractTargetPage (ContractTargetPageReq) returns (ContractTargetPageResp);
+
+    //下载合同-restAPI /api/open/bestsign/contractDownLoadFile, method:get
+    rpc contractDownLoadFile (ContractDownLoadFileReq) returns (ContractDownLoadFileResp);
+}
+
+//第三方获取需要签约的合同列表 请求信息
+message GetThreePartyContractListReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    int32 pageSize = 3;                       // 每页大小
+    int32 pageNumber = 4;                     // 起始页
+    string thirdPartyName = 5;                //第三方企业名称（必填）
+    // string thirdPartyMobile = 6;              //第三方企业手机（必填）
+    int32 thirdPartyStatus = 7;               //第三方签署状态（非必填）
+    string thirdPartySignTimeStart = 8;       //签署时间（非必填）
+    string thirdPartySignTimeEnd = 9;         //签署时间End（非必填）
+    string applyTimeStart = 10;                //发送时间（非必填）
+    string applyTimeEnd = 11;                  //发送时间End（非必填）
+    string fsEnName = 12;                     //发送企业名称【融资方】（非必填）
+
+}
+//第三方获取需要签约的合同列表 响应信息
+message GetThreePartyContractListResp {
+    RespHeader respHeader = 1; // 响应头信息
+    repeated Contract contract = 2;
+    PagingInfo pagingInfo = 3; // 分页信息
+}
+
+//第三方获取待签约合同数量 请求信息
+message GetThreePartyContractCountReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    string thirdPartyName = 5;                //第三方企业名称（必填）
+}
+//第三方获取待签约合同数量 响应信息
+message GetThreePartyContractCountResp {
+    RespHeader respHeader = 1; // 响应头信息
+    int32 count = 2;                    //待签约合同数量
+}
+
+//合同管理、签署、查看 请求信息
+message ContractTargetPageReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    string thirdPartyEnuu = 3;      //买方enuu
+    string thirdPartyMobile = 4;    //买方手机号
+    string targetPage = 5;          //doc：合同管理页面； signing：合同签署页； docView：合同详情页；
+    string returnUrl = 6;           //自定义的跳转链接
+    string contractId = 7;          //合同id(当targetPage为signing或者docView时必填)
+}
+//合同管理、签署、查看 响应信息
+message ContractTargetPageResp {
+    RespHeader respHeader = 1; // 响应头信息
+    string url = 2;                  //跳转链接
+}
+
+//下载合同 请求信息
+message ContractDownLoadFileReq {
+    string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2; //秘密身份ID
+    string thirdPartyEnuu = 3;      //买方enuu
+    string thirdPartyMobile = 4;    //买方手机号
+    string contractId = 5;          //合同id
+}
+//下载合同 响应信息
+message ContractDownLoadFileResp {
+    RespHeader respHeader = 1; // 响应头信息
+    string data = 2;                 //base64文件流
+}
