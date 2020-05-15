@@ -10,7 +10,7 @@ message FinanceOfferDetails {
     repeated OfferDetailAndFinanceAccept offerDetailAndFinanceAcceptInfo = 2; //（报价详情表）与（融资需求详情与B2B订单表）与（融资需求详情与B2B验收明细单表）
     AcceptFinanceDemand financeDemandInfo = 3; //融资需求信息
     CapitalSideLoanAndRepaymentPlan capitalSideLoanAndRepaymentPlanInfo = 4; //(资金方放款信息表)与(资金方还款计划表)
-    OfferQuotaRest offerQuota= 5;       //额度嘻嘻你
+    OfferQuotaRest offerQuota= 5;       //额度信息
 }
 
 //（融资需求详情与B2B验收明细单）与（融资需求详情与B2B订单表）
