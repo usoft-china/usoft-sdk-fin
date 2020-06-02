@@ -75,4 +75,17 @@ public class BestsignSdk extends BaseSdk {
 		return resp.build();
 	}
 
+	/**
+	 * [资金方详情页获取银行账号信息]
+	 * @author: linjh
+	 * @date: 2020/6/2
+	 **/
+	public GetBankAccountInfoResp getBankAccountInfo(GetBankAccountInfoReq.Builder req) throws Exception {
+		String url = baseUrl + "/api/open/bestsign/getBankAccountInfo";
+		Map<String, String> params = genSignToMap(req);
+		String respJson = HttpUtil.doGet(url, params, timeout);
+		GetBankAccountInfoResp.Builder resp = ProtoBufUtil.toProtoBuf(GetBankAccountInfoResp.newBuilder(), respJson);
+		return resp.build();
+	}
+
 }
