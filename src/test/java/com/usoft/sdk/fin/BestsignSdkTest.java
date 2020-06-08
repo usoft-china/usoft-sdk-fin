@@ -75,4 +75,18 @@ public class BestsignSdkTest {
 		ContractDownLoadFileResp resp = bestsignSdk.contractDownLoadFile(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}
+
+	/**
+	 * [资金方详情页获取银行账号信息]
+	 * @author: linjh
+	 * @date: 2020/6/2
+	 **/
+	@Test
+	public void getBankAccountInfo() throws Exception {
+		GetBankAccountInfoReq.Builder req = GetBankAccountInfoReq.newBuilder();
+		//secretId=10050877&thirdPartyEnuu=10046945&thirdPartymobile=13760478918&contractId=2510836503077196804
+		req.setFinanceDemandCode("73200525036937040641").setAcceptOfferCode("71200525036971882080");
+		GetBankAccountInfoResp resp = bestsignSdk.getBankAccountInfo(req);
+		System.out.println(ProtoBufUtil.toJSON(resp));
+	}
 }

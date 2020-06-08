@@ -19,6 +19,9 @@ service IOpenBestsignService {
 
     //下载合同-restAPI /api/open/bestsign/contractDownLoadFile, method:get
     rpc contractDownLoadFile (ContractDownLoadFileReq) returns (ContractDownLoadFileResp);
+
+    //资金方详情页获取银行账号信息-restAPI /api/open/bestsign/getBankAccountInfo, method:get
+    rpc getBankAccountInfo (GetBankAccountInfoReq) returns (GetBankAccountInfoResp);
 }
 
 //第三方获取需要签约的合同列表 请求信息
@@ -84,4 +87,20 @@ message ContractDownLoadFileReq {
 message ContractDownLoadFileResp {
     RespHeader respHeader = 1; // 响应头信息
     string data = 2;                 //base64文件流
+}
+
+//资金方详情页获取银行账号信息 请求信息
+message GetBankAccountInfoReq {
+    string signature = 1;           //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 2;            //秘密身份ID
+    string financeDemandCode = 3;   //融资需求编号
+    string acceptOfferCode = 4;     //报价编号
+}
+
+//资金方详情页获取银行账号信息 响应信息
+message GetBankAccountInfoResp {
+    RespHeader respHeader = 1;        //响应头信息
+    string bankName = 2;              //银行名称
+    string bankAccount = 3;           //银行账号
+    string bankAccountName = 4;       //银行账号名称
 }

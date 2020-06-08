@@ -39,7 +39,7 @@ public class FinancingSideSdkTest {
 	@Test
 	public void getFinanceDemandDetail() throws Exception {
 		GetFinanceDemandDetailReq.Builder req = GetFinanceDemandDetailReq.newBuilder();
-		req.setCode("73191218666420548913").setEnuu(10042875);
+		req.setCode("73200529073387555315").setEnuu(10000666);
 		GetFinanceDemandDetailResp resp = financingSideSdk.getFinanceDemandDetail(req);
 		System.out.println(ProtoBufUtil.toJSON(resp));
 	}

@@ -74,6 +74,7 @@ message AcceptOffer{
     string payments = 17;                   //还款方式 按月付息，到期还本/到期一次性还
     double offerRate = 18;                  //放款年利率
     double financingRatio = 19;             //融资比例=采纳报价/验收总额
+    double depositAmount = 20;              //保证金
 }
 
 //融资需求表
