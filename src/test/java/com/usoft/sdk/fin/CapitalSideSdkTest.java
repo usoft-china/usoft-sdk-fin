@@ -1,5 +1,6 @@
 package com.usoft.sdk.fin;
 
+import com.usoft.fin.external.open.api.entity.GuarantorJson;
 import com.usoft.fin.external.open.api.entity.OpenCapitalSideLoanOther;
 import com.usoft.fin.external.open.api.entity.OpenCapitalSideRepaymentPlanOther;
 import com.usoft.fin.external.open.api.protobuf.*;
@@ -61,7 +62,7 @@ public class CapitalSideSdkTest {
 	@Test
 	public void getOfferQuotaInfoList() throws Exception {
 		GetOfferQuotaInfoListReq.Builder req = GetOfferQuotaInfoListReq.newBuilder();
-		req.setCsEnuu(10046945);
+		req.setCsEnuu(10050877);
 		req.setPageNumber(1);
 		req.setPageSize(10);
 //		req.setUpdateTime(1578879998000L);
@@ -99,8 +100,15 @@ public class CapitalSideSdkTest {
     @Test
     public void saveOfferQuotaInfo() throws Exception {
         SaveOfferQuotaInfoReq.Builder req = SaveOfferQuotaInfoReq.newBuilder();
-        req.setCsEnuu(10042875).setCsEnName("深圳市优软商城科技有限公司").setFsEnuu(10041559).setFsEnName("深圳市胜芳电子有限公司").setQuotaAmount(300)
-                .setCredDays(12).setFinanceRate(90).setOfferRate(15).setRepayment("到期一次性还本付息").setApplyUu(1000027739);
+        req.setCsEnuu(10050877).setCsEnName("深圳市英唐保理有限公司").setFsEnuu(10041559).setFsEnName("深圳市胜芳电子有限公司").setQuotaAmount(300)
+                .setCredDays(12).setFinanceRate(90).setOfferRate(15).setRepayment("到期一次性还本付息").setApplyUu(1000027739)
+                .setDepositRate(10);
+
+        GuarantorJson.Builder guarantorJson = GuarantorJson.newBuilder();
+        guarantorJson.setName("lzx")
+                .setMobile("15976105608");
+        req.addGuarantorJson(guarantorJson.build());
+
         SaveOfferQuotaInfoResp resp = capitalSideSdk.saveOfferQuotaInfo(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
@@ -108,7 +116,7 @@ public class CapitalSideSdkTest {
     @Test
     public void updateOfferQuotaInfo() throws Exception {
         UpdateOfferQuotaInfoReq.Builder req = UpdateOfferQuotaInfoReq.newBuilder();
-        req.setCsEnuu(10042875).setFsEnuu(10041559).setStatus(1402).setEndTime("2029-09-09 09:13:20")
+        req.setCsEnuu(10050877).setFsEnuu(10041559).setStatus(1402).setEndTime("2021-09-09 09:13:20")
                 .setCheckerContent("有钱任性").setCheckUu(1000027739);
         UpdateOfferQuotaInfoResp resp = capitalSideSdk.updateOfferQuotaInfo(req);
         System.out.println(ProtoBufUtil.toJSON(resp));

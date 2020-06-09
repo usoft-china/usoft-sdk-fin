@@ -51,6 +51,7 @@ message OfferQuotaInfoRest{
     string code = 19;            //code
     string previousRecord = 20;  //调整前的数据
     string guarantorJson = 21;   //担保人信息
+    double depositRate = 22;                        //保证金比例
 }
 
 //报价表
@@ -278,6 +279,7 @@ message OfferQuotaRest{
     double usableAmount=10;   // 可用额度（元）
     string guarantorJson=11;           //担保人信息
     int32 quotaAdjustment=12;           //额度调整标识，用于确认是否要发送额度合同 (1:需要,0:不需要)
+    double depositRate = 16;                        //保证金比例
 }
 
 message FinanceAndCapitalSideLoanList {

@@ -126,6 +126,7 @@ message SaveOfferQuotaInfoReq{
     string previousRecord = 13;    //调整前数据
     string acceptOfferQuotaCode = 14;               //额度编号(选填)
     repeated GuarantorJson guarantorJson = 15;      //担保人list
+    double depositRate = 16;                        //保证金比例
 }
 //提交企业申请额度信息
 message SaveOfferQuotaInfoResp{
