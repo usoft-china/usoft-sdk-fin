@@ -10,10 +10,6 @@ public class CapitalSideSdk extends BaseSdk {
         super(baseUrl, secretId, secretKey);
     }
 
-    public CapitalSideSdk(String baseUrl, String secretId, String secretKey, int timeout) {
-        super(baseUrl, secretId, secretKey, timeout);
-    }
-
     /**
      * [查看融资记录列表]
      * @author: linjh
@@ -182,4 +178,20 @@ public class CapitalSideSdk extends BaseSdk {
         GetRepaymentResp.Builder resp = ProtoBufUtil.toProtoBuf(GetRepaymentResp.newBuilder(), respJson);
         return resp.build();
     }
+
+
+
+    /**
+     * [用一句话描述此类]
+     * @author: liuzx
+     * @date: 2020/9/3
+     **/
+    public UpdateRepaymentPlanResp updateRepaymentPlan(UpdateRepaymentPlanReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/factoring/cs/updateRepaymentPlan";
+        String paramJson = genSignToJson(req);
+        String respJson = HttpUtil.doPost(url, paramJson, timeout);
+        UpdateRepaymentPlanResp.Builder resp = ProtoBufUtil.toProtoBuf(UpdateRepaymentPlanResp.newBuilder(), respJson);
+        return resp.build();
+    }
+
 }

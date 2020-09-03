@@ -242,6 +242,8 @@ message OpenCapitalSideRepaymentPlanOther{
     double interest = 6;                //本期应还利息
     double amount = 7;                  //本期还款额
     string personInCharge = 8;          //经办人
+    string erpRepaymentCode = 9;        //erp业务还款code
+    int32  status = 10;                  //是否执行还款，1-是，0-否
 }
 
 //收藏企业实体

@@ -226,4 +226,20 @@ public class CapitalSideSdkTest {
         GetRepaymentResp resp = capitalSideSdk.getRepaymentList(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
+
+    @Test
+    public void updateRepaymentPlan() throws Exception {
+        UpdateRepaymentPlanReq.Builder req = UpdateRepaymentPlanReq.newBuilder();
+        OpenCapitalSideRepaymentPlanOther.Builder capitalSideRepaymentPlan= OpenCapitalSideRepaymentPlanOther.newBuilder();
+        capitalSideRepaymentPlan.setRepaymentData("2020-09-03").setCurrency("RMB").setCapitalAmount(3000)
+                .setInterest(300).setAmount(3300).setPersonInCharge("lbj").setStatus(0).setErpRepaymentCode("88888");
+
+        OpenCapitalSideRepaymentPlanOther.Builder capitalSideRepaymentPlan2= OpenCapitalSideRepaymentPlanOther.newBuilder();
+        capitalSideRepaymentPlan2.setRepaymentData("2020-09-03").setCurrency("RMB").setCapitalAmount(2000)
+                .setInterest(300).setAmount(2300).setPersonInCharge("lbj").setStatus(0).setErpRepaymentCode("99999");
+
+        req.addCapitalSideRepaymentPlan(capitalSideRepaymentPlan).addCapitalSideRepaymentPlan(capitalSideRepaymentPlan2);
+        UpdateRepaymentPlanResp resp = capitalSideSdk.updateRepaymentPlan(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
 }
