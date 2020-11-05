@@ -50,7 +50,7 @@ message GetFinanceSidesResp {
 message GetOrderByOrderIdReq{
     string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
     string secretId = 2; //秘密身份ID
-    int32 orderId = 3;  //订单ID
+    string orderId = 3;  //订单ID
     int32 enuu = 4;  //查看的卖方企业uu
 }
 

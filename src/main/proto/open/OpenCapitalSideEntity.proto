@@ -130,7 +130,7 @@ message AcceptFinanceDemandDetail {
     string custEnName= 4;             //验收客户企业名称
     string custGrade= 5;              //验收客户平台评级
     string payments= 6;               //B2B验收单付款方式
-    int32 orderId= 7;                 //B2B订单id
+    string orderId= 7;                //B2B订单id
     string orderCode= 8;              //B2B订单号
     int32 orderTotal= 9;              //B2B订单总金额
     double acceptAmount= 10;          //勾选B2B验收单明细金额合计
@@ -141,9 +141,9 @@ message AcceptFinanceDemandDetailAccept{
     string code = 1;
     string financeDemandCode = 2;       //融资需求编号
     string financeDemandDetailCode = 3; //融资需求详情与验收单编号
-    int32 orderItemId= 4;               //B2B订单明细id
-    int32 acceptItemId= 5;            //B2B验收明细id
-    int32 acceptId= 6;                 //B2B验收id
+    string orderItemId= 4;               //B2B订单明细id
+    string acceptItemId= 5;            //B2B验收明细id
+    string acceptId= 6;                 //B2B验收id
     double acceptAmount= 7;            //B2B验收金额
     string acceptDate= 8;              //B2B验收日期
     string acceptCode= 9;              //B2B验收单号
