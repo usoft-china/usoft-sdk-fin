@@ -50,28 +50,26 @@ message GetFinanceSidesResp {
 message GetOrderByOrderIdReq{
     string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
     string secretId = 2; //秘密身份ID
-    string orderId = 3;  //订单ID
-    int32 enuu = 4;  //查看的卖方企业uu
+    string orderCode = 3;  //订单code
 }
 
 //根据验订单ID通过b2b获取订单详情--响应
 message GetOrderByOrderIdResp{
     RespHeader respHeader = 1; // 响应头信息
-    string jsonString = 2;
+    OrderArg orderArg = 2;     //订单聚合实体
 }
 
 //根据验收单主表ID通过b2b获取验收单详情--请求
 message GetAcceptOrderByAcceptIdReq{
     string signature = 1; //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
     string secretId = 2; //秘密身份ID
-    int32 acceptIdPrimary = 3;  //验收单主表ID
-    int32 enuu = 4;  //查看的卖方企业uu
+    string orderAcceptCode = 3;  //验收单code
 }
 
 //根据验收单主表ID通过b2b获取验收单详情--响应
 message GetAcceptOrderByAcceptIdResp{
     RespHeader respHeader = 1; // 响应头信息
-    string jsonString = 2;
+    OrderAcceptArg orderAcceptArg = 2;     //订单聚合实体
 }
 
 // 通过enuu获取融资方信息--请求

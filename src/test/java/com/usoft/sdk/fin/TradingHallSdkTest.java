@@ -27,8 +27,7 @@ public class TradingHallSdkTest {
     @Test
     public void getOrderByOrderId() throws Exception {
         GetOrderByOrderIdReq.Builder req = GetOrderByOrderIdReq.newBuilder();
-        req.setEnuu(10041961);
-        req.setOrderId(14125390);
+        req.setOrderCode("OR200728591590612413");
         GetOrderByOrderIdResp resp = tradingHallSdk.getOrderByOrderId(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
@@ -36,8 +35,7 @@ public class TradingHallSdkTest {
     @Test
     public void GetAcceptOrderByAcceptId() throws Exception {
         GetAcceptOrderByAcceptIdReq.Builder req = GetAcceptOrderByAcceptIdReq.newBuilder();
-        req.setEnuu(10000666);
-        req.setAcceptIdPrimary(1856822);
+        req.setOrderAcceptCode("OA200902901048541755");
         GetAcceptOrderByAcceptIdResp resp = tradingHallSdk.GetAcceptOrderByAcceptId(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }

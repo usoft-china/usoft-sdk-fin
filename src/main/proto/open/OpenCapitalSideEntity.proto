@@ -295,3 +295,140 @@ message GuarantorJson{
     string name = 1;    //担保人姓名
     string mobile = 2;    //担保电话
 }
+
+//验收单聚合验收单详情实体
+message OrderAcceptArg{
+    B2bOrderAccept orderAccept = 1;     //验收单
+    repeated B2bOrderAcceptProduct orderAcceptProduct = 2;   //验收单产品
+}
+
+//采购验收单
+message B2bOrderAccept{
+    string code = 1; //编号
+    string bizCode = 2; //业务号
+    int32 sellerEnuu = 3; //卖家enuu
+    int32 buyerEnuu = 4; //买家enuu
+    int32 category = 5; //订单类别(10.采购订单 20.委外订单 30.不良品)
+    string paymentMethod = 6; //付款方式
+    string currency = 7; //币别(人民币.RMB,美元.USD,港元.HKD,英镑.GBP,欧元.EUR,日元.JPY)
+    int32 acceptUu = 8; //验收人uu
+    string acceptTime = 9; //验收时间
+    int32 sellerDataStatus = 10; //卖家数据状态（10.待下载  20.已下载）
+    string sourceId = 11; //来源ID
+    bool deleted = 12; //是否删除
+}
+//采购验收单产品
+message B2bOrderAcceptProduct{
+    string code = 1; //编号
+    string orderAcceptCode = 2; //采购验收单编号
+    int32 ordinal = 3; //序号
+    string orderCode = 4; //采购订单编号
+    string orderProductCode = 5; //采购订单产品编号
+    string orderDeliveryProductCode = 6; //采购发货单产品编号
+    string orderReceiveProductCode = 7; //采购收货单产品编号
+    int32 orderProductOrdinal = 8; //采购订单产品序号
+    string productCode = 9; //产品编号
+    string productMaterialCode = 10; //产品物料编号
+    string productModel = 11; //产品型号
+    string productBrand = 12; //产品品牌
+    string productName = 13; //产品名称
+    string productSpec = 14; //产品规格
+    double unitPrice = 15; //单价
+    double taxRate = 16; //税率(%)
+    string batchNo = 17; //批号
+    double quantityAccept = 18; //验收数量
+    double quantityReturn = 19; //验退数量
+    double subtotalAmount = 20; //小计
+    string unit = 21; //单位
+    string deliveryTime = 22; //交期
+    string remark = 23; //备注
+    int32 sellerReconcileStatus = 24; //卖家对账状态(10.未对账 20.已对账)
+    int32 sellerReconcileUu = 25; //卖家对账人uu
+    string sellerReconcileTime = 26; //卖家对账时间/录单时间
+    int32 buyerReconcileStatus = 27; //买家对账状态(10.未对账 20.已对账)
+    int32 buyerReconcileUu = 28; //买家对账人uu
+    string buyerReconcileTime = 29; //买家对账时间
+    int32 invoiceStatus = 30; //开票状态(10.未开票 20.已开票)
+    int32 drawerUu = 31; //开票人uu
+    string drawerTime = 32; //开票时间
+    string sourceId = 33; // 来源ID
+}
+
+//订单聚合订单详情实体
+message OrderArg{
+    B2bOrder order = 1;         //订单
+    repeated B2bOrderProduct OrderProduct = 2;      //订单产品
+}
+
+// 采购订单
+message B2bOrder{
+    string code = 1; //编号
+    string bizCode = 2; // 业务号
+    int32 sellerEnuu = 3; //卖家enuu
+    int32 sellerLinkmanUu = 4; //卖家联系人uu
+    int32 buyerEnuu = 5; //买家enuu
+    int32 buyerTypeInUu = 6; //买家输入人enuu
+    int32 category = 7; //订单类别(10.采购订单 20.委外订单)
+    string paymentMethod = 8; //付款方式
+    string currency = 9; //币别(人民币.RMB,美元.USD,港元.HKD,英镑.GBP,欧元.EUR,日元.JPY)
+    double exchangeRate = 10; //汇率
+    double totalAmount = 11; //总金额
+    string createdTime = 12; //录入时间
+    string remark = 13; //备注
+    string processStart = 14; //加工开始日期（yyyy-MM-dd）
+    string processEnd = 15; //加工结束日期（yyyy-MM-dd）
+    string outsourceType = 16; //委外类型
+    string deliveryFactory = 17; //送货工厂
+    int32 sellerDataStatus = 18; // 卖家数据状态（10.待下载  20.已下载）
+    string sourceId = 19; // 来源ID
+    string paySellerCode = 20; // 应付供应商编号
+    string paySellerName = 21; // 应付供应商名称
+    bool deleted = 22; //是否删除
+    string recorder = 23; // 录单人
+    string auditor = 24; // 审核人
+    string buyerEnName = 25; //买家名称
+    double orderAcceptAmountTool = 26; //验收单金额合计
+}
+//采购订单产品
+message B2bOrderProduct{
+    string code = 1; //编号
+    string orderCode = 2; //采购订单编号
+    int32 orderCategory = 3; //订单类别(10.采购订单 20.委外订单)
+    int32 ordinal = 4; //序号
+    string productCode = 5; //产品编号
+    string productMaterialCode = 6; //产品物料编号
+    string productModel = 7; //产品型号
+    string productBrand = 8; //产品品牌
+    string productName = 9; //产品名称
+    string productSpec = 10; //产品规格
+    double unitPrice = 11; //单价
+    double taxRate = 12; //税率(%)
+    double quantity = 13; //数量
+    double quantityRemind = 14; //发货提醒数量
+    double quantityDelivery = 15; //发货数量
+    double quantityReceive = 16; //收货数量
+    double quantityAccept = 17; //验收数量
+    double quantityReturn = 18; //验退数量
+    double quantityReply = 19; //回复数量
+    string unit = 20; //单位
+    string deliveryTime = 21; //交期
+    string remark = 22; //备注
+    int32 status = 23; //状态（10.待发货 30.已发货 50.已收货 90.已结案）
+    int32 replyStatus = 24; //回复状态（10.待回复 30.已回复）
+    repeated string attachFC = 25; //多附件编号列表
+    string sourceId = 26; // 来源ID
+    int32 endSellerEnuu = 27; // 终端供应商uu
+    string taxCategoryCode = 28; // 税收分类编码
+    string invoiceName = 29; // 开票名称
+    string invoiceModel = 30; // 开票型号
+    string factory = 31; // 送货工厂
+    double quantitySpare = 32; //备品数量
+    string replaceMaterialCode = 33; // 替代料号
+    string replaceMaterialName = 34; // 替代料名称
+    string replaceMaterialSpec = 35; // 替代料规格
+    string oldMaterialCode = 36; // 旧料编号
+    string oldMaterialName = 37; // 旧料名称
+    string oldMaterialSpec = 38; // 旧料规格
+    string materialAdmitStatus = 39; // 物料承认状态
+    string topMaterialCode = 40; // 顶层物料编码
+}
