@@ -15,7 +15,7 @@ service IOpenTradingHallService {
     //根据验订单ID通过b2b获取订单详情 -restAPI  /api/open/factoring/getOrderByOrderId   method:get, type:kv
     rpc getOrderByOrderId (GetOrderByOrderIdReq) returns (GetOrderByOrderIdResp);
     //根据验收单主表ID通过b2b获取验收单详情 -restAPI /api/open/factoring/getAcceptOrderByAcceptId   method:get, type:kv
-    rpc GetAcceptOrderByAcceptId (GetAcceptOrderByAcceptIdReq) returns (GetAcceptOrderByAcceptIdResp);
+    rpc getAcceptOrderByAcceptId (GetAcceptOrderByAcceptIdReq) returns (GetAcceptOrderByAcceptIdResp);
     // 通过enuu获取融资方信息-restAPI /api/open/factoring/baseInfo, method:get, type:kv
     rpc getBaseInfo (GetBaseInfoReq) returns (GetBaseInfoResp);
     // 获取放款信息记录、还款计划记录公共方法-restAPI /api/open/factoring/getCapitalSideLoanAndRepaymentPlan, method:get, type:kv

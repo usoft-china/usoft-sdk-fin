@@ -33,10 +33,10 @@ public class TradingHallSdkTest {
     }
 
     @Test
-    public void GetAcceptOrderByAcceptId() throws Exception {
+    public void getAcceptOrderByAcceptId() throws Exception {
         GetAcceptOrderByAcceptIdReq.Builder req = GetAcceptOrderByAcceptIdReq.newBuilder();
         req.setOrderAcceptCode("OA200902901048541755");
-        GetAcceptOrderByAcceptIdResp resp = tradingHallSdk.GetAcceptOrderByAcceptId(req);
+        GetAcceptOrderByAcceptIdResp resp = tradingHallSdk.getAcceptOrderByAcceptId(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
 

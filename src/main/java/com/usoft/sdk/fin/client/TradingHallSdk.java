@@ -51,7 +51,7 @@ public class TradingHallSdk extends BaseSdk {
      * @author: linjh
      * @date: 2019/12/31
      **/
-    public GetAcceptOrderByAcceptIdResp GetAcceptOrderByAcceptId(GetAcceptOrderByAcceptIdReq.Builder req) throws Exception {
+    public GetAcceptOrderByAcceptIdResp getAcceptOrderByAcceptId(GetAcceptOrderByAcceptIdReq.Builder req) throws Exception {
         String url = baseUrl + "/api/open/factoring/getAcceptOrderByAcceptId";
         Map<String, String> params = genSignToMap(req);
         String respJson = HttpUtil.doGet(url, params, timeout);
