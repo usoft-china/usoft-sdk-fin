@@ -1,6 +1,7 @@
 package com.usoft.sdk.fin;
 
 import com.usoft.fin.external.open.api.protobuf.*;
+import com.usoft.sdk.fin.client.CapitalSideSdk;
 import com.usoft.sdk.fin.client.TradingHallSdk;
 import com.usoft.sdk.fin.utils.ProtoBufUtil;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,8 @@ public class TradingHallSdkTest {
     /**
      * 测试地址
      */
-    private TradingHallSdk tradingHallSdk = new TradingHallSdk("https://finrest.uuzcc.cn", "10042875", "c49f7be6a861461ab951e55030055a5c");
+    //private TradingHallSdk tradingHallSdk = new TradingHallSdk("https://finrest.uuzcc.cn", "10042875", "c49f7be6a861461ab951e55030055a5c");
+    private TradingHallSdk tradingHallSdk = new TradingHallSdk("https://finrest.usoftchina.com", "10046945", "600d3f07955ba67fe050007f01002db2");
 
     @Test
     public void getFinanceSides() throws Exception {
@@ -43,9 +45,9 @@ public class TradingHallSdkTest {
     @Test
     public void getBaseInfo() throws Exception {
         GetBaseInfoReq.Builder req = GetBaseInfoReq.newBuilder();
-        req.setEnuu(10005285);
-        req.setCsEnuu(10050856);
-        req.setUu(10005285);
+        req.setEnuu(20003694);
+        req.setCsEnuu(10046945);
+        req.setUu(1000014617);
         GetBaseInfoResp resp = tradingHallSdk.getBaseInfo(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
