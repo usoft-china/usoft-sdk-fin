@@ -256,6 +256,7 @@ public class CapitalSideSdkTest {
         req.setQuotaAmount(10000);
         req.setCredDays(12);
         req.setApplyTime("2020-11-17 15:50:02");
+        req.setExtendCode("2020110002");
         AddBuyerQouteResp resp = capitalSideSdk.addBuyerQoute(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
