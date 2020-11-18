@@ -20,8 +20,8 @@ public class CapitalSideSdkTest {
 	/**
 	 * 测试地址
 	 */
-	//private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.uuzcc.cn", "10050877", "b78d577449b64f56a8a6cf1feeb3fbf5");
-    private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.usoftchina.com", "10046945", "600d3f07955ba67fe050007f01002db2");
+	private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.uuzcc.cn", "10050877", "b78d577449b64f56a8a6cf1feeb3fbf5");
+    //private CapitalSideSdk capitalSideSdk = new CapitalSideSdk("https://finrest.usoftchina.com", "10046945", "600d3f07955ba67fe050007f01002db2");
 
     @Test
 	public void getFinanceSideDemands() throws Exception {
@@ -240,6 +240,23 @@ public class CapitalSideSdkTest {
 
         req.addCapitalSideRepaymentPlan(capitalSideRepaymentPlan).addCapitalSideRepaymentPlan(capitalSideRepaymentPlan2);
         UpdateRepaymentPlanResp resp = capitalSideSdk.updateRepaymentPlan(req);
+        System.out.println(ProtoBufUtil.toJSON(resp));
+    }
+
+
+    /**
+     * [新增买方额度]
+     * @author: liuzx
+     * @date: 2020/11/18
+     **/
+    @Test
+    public void addBuyerQoute() throws Exception {
+        AddBuyerQouteReq.Builder req = AddBuyerQouteReq.newBuilder();
+        req.setBuyerEnName("深圳市吉利通电子有限公司");
+        req.setQuotaAmount(10000);
+        req.setCredDays(12);
+        req.setApplyTime("2020-11-17 15:50:02");
+        AddBuyerQouteResp resp = capitalSideSdk.addBuyerQoute(req);
         System.out.println(ProtoBufUtil.toJSON(resp));
     }
 }

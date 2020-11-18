@@ -38,6 +38,9 @@ service IOpenCapitalSideService {
     //批量更新执行还款记录  -restAPI /api/open/factoring/cs/updateRepaymentPlan, method:post, type:kv
     rpc updateRepaymentPlan(UpdateRepaymentPlanReq) returns (UpdateRepaymentPlanResp);
 
+    //--核心买家额度模块
+    //新增买方额度--restAPI /api/open/factoring/addBuyerQoute, method:post, type:kv
+    rpc addBuyerQoute(AddBuyerQouteReq) returns (AddBuyerQouteResp);
 }
 
 
@@ -301,5 +304,20 @@ message UpdateRepaymentPlanReq{
 
 //批量更新执行还款记录    响应参数
 message UpdateRepaymentPlanResp{
+    RespHeader respHeader = 1; // 响应头信息
+}
+
+//新增买方额度
+message AddBuyerQouteReq {
+    ReqHeader reqHeader = 1; //请求头信息
+    string buyerEnName = 2;     //买家企业名称
+    double quotaAmount = 3;    //授信额度(元)
+    int32 credDays = 4;       //剩余授信期限(月)
+    string applyTime = 5;      //审批日期 (yyyy-mm-dd hh:ii:ss)
+    string signature = 7;            //请求参数签名,（GET KV：K1=V2&K2=V2 ; POST JSON: {"K1":"V1","K2":"V2",signature:""}）
+    string secretId = 8;             //秘密身份ID
+}
+//新增买方额度
+message AddBuyerQouteResp {
     RespHeader respHeader = 1; // 响应头信息
 }

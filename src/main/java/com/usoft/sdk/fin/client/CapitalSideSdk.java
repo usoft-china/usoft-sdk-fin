@@ -194,4 +194,17 @@ public class CapitalSideSdk extends BaseSdk {
         return resp.build();
     }
 
+    /**
+     * [新增买方额度]
+     * @author: liuzx
+     * @date: 2020/11/18
+     **/
+    public AddBuyerQouteResp addBuyerQoute(AddBuyerQouteReq.Builder req) throws Exception {
+        String url = baseUrl + "/api/open/factoring/addBuyerQoute";
+        String paramJson = genSignToJson(req);
+        String respJson = HttpUtil.doPost(url, paramJson, timeout);
+        AddBuyerQouteResp.Builder resp = ProtoBufUtil.toProtoBuf(AddBuyerQouteResp.newBuilder(), respJson);
+        return resp.build();
+    }
+
 }
