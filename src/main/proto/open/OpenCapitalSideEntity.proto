@@ -244,6 +244,7 @@ message OpenCapitalSideRepaymentPlanOther{
     string personInCharge = 8;          //经办人
     string erpRepaymentCode = 9;        //erp业务还款code
     int32  status = 10;                  //是否执行还款，1-是，0-否
+    string capitalSideLoanCode = 11;    //放款编号
 }
 
 //收藏企业实体

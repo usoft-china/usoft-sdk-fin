@@ -232,11 +232,11 @@ public class CapitalSideSdkTest {
         UpdateRepaymentPlanReq.Builder req = UpdateRepaymentPlanReq.newBuilder();
         OpenCapitalSideRepaymentPlanOther.Builder capitalSideRepaymentPlan= OpenCapitalSideRepaymentPlanOther.newBuilder();
         capitalSideRepaymentPlan.setRepaymentData("2020-09-03").setCurrency("RMB").setCapitalAmount(3000)
-                .setInterest(300).setAmount(3300).setPersonInCharge("lbj").setStatus(0).setErpRepaymentCode("88888");
+                .setInterest(300).setAmount(3300).setPersonInCharge("lbj").setStatus(0).setErpRepaymentCode("2020110052").setCapitalSideLoanCode("86201230929170126007");
 
         OpenCapitalSideRepaymentPlanOther.Builder capitalSideRepaymentPlan2= OpenCapitalSideRepaymentPlanOther.newBuilder();
-        capitalSideRepaymentPlan2.setRepaymentData("2020-09-03").setCurrency("RMB").setCapitalAmount(2000)
-                .setInterest(300).setAmount(2300).setPersonInCharge("lbj").setStatus(0).setErpRepaymentCode("99999");
+        capitalSideRepaymentPlan2.setRepaymentData("2020-09-03").setCurrency("RMB").setCapitalAmount(2002)
+                .setInterest(400).setAmount(2300).setPersonInCharge("lbj").setStatus(0).setErpRepaymentCode("2020110053").setCapitalSideLoanCode("86201230929170126007");
 
         req.addCapitalSideRepaymentPlan(capitalSideRepaymentPlan).addCapitalSideRepaymentPlan(capitalSideRepaymentPlan2);
         UpdateRepaymentPlanResp resp = capitalSideSdk.updateRepaymentPlan(req);

@@ -136,6 +136,8 @@ public class HttpUtil {
 			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(nvList);
 			entity.setContentEncoding("UTF-8");
 			httpPost.setEntity(entity);
+			//http连接不允许复用
+			httpPost.setHeader("Connection", "close");
 		}
 		String result = doPost(url, httpPost, timeout);
 		LOGGER.info("发起POST请求[HttpUtil.doPost]正常，参数：{}", url + JSON.toJSONString(map));
@@ -157,6 +159,8 @@ public class HttpUtil {
 		HttpPost httpPost = new HttpPost(url);
 		StringEntity stringEntity = new StringEntity(json, ContentType.APPLICATION_JSON);
 		stringEntity.setContentEncoding("UTF-8");
+		//设置不使用长连接
+		httpPost.setHeader("Connection", "close");
 		httpPost.setEntity(stringEntity);
 		String result = doPost(url, httpPost, timeout);
 		LOGGER.info("发起POST请求[HttpUtil.doPost]正常，参数：{}", url + json);
